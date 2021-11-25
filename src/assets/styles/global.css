@@ -21,6 +21,7 @@ h5,
 h6,
 q {
     font-family: "Emilys Candy";
+    color: #ffffff;
 }
 
 a,
@@ -29,4 +30,8 @@ span,
 label,
 textarea {
     font-family: "Glacial Indifference Regular";
+}
+
+img{
+    max-width: 100%;
 }

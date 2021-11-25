@@ -1,5 +1,5 @@
 <template>
-  <ListeEnigmesParDifficulte :difficulte='difficulty'/>
+  <ListeEnigmesParDifficulte :difficulty='difficulty' :labelDifficulty='labelDifficulty'/>
 </template>
 
 <script>
@@ -10,11 +10,13 @@ export default {
     ListeEnigmesParDifficulte
   },
   data: () => ({
-    difficulty: ''
+    difficulty: null,
+    labelDifficulty: null,
   }),
   created () {
     this.difficulty = this.$route.params.difficulty;
-    if (!this.difficulty) {
+    this.labelDifficulty = this.$route.params.labelDifficulty;
+    if (!this.difficulty || !this.labelDifficulty) {
       this.$router.push('difficultes'); 
     }
   }

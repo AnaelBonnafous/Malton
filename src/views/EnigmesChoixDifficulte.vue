@@ -3,9 +3,9 @@
     <h1 class="text-h3">Sélection du mode de difficulté</h1>
     <div class="bg-primary q-py-lg">
       <div class="q-gutter-lg">
-        <div v-for="difficulty in difficulties" :key="difficulty.difficulty">
+        <div class="div-button-difficulties" v-for="difficulty in difficulties" :key="difficulty.difficulty">
           <q-btn
-            :to="{ name: 'enigmes', params: { difficulty: difficulty['@id'] } }"
+            :to="{ name: 'enigmes', params: { difficulty: difficulty['@id'], labelDifficulty: difficulty.difficulty} }"
             class="bg-secondary text-white"
             size="lg"
           >{{ difficulty.difficulty }}</q-btn>
@@ -23,7 +23,7 @@ export default {
     difficulties: [],
   }),
   async created() {
-    const response = await axios.get("difficultes");
+    const response = await axios.get('difficultes');
     this.difficulties = response.data["hydra:member"];
   },
 };

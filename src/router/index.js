@@ -1,11 +1,12 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Accueil from "@/views/Accueil.vue";
-import Enigmes from "@/views/Enigmes.vue";
+import ListeEnigmesParDifficulte from "@/views/ListeEnigmesParDifficulte.vue";
 import Login from "@/views/Login.vue";
 import Register from "@/views/Register.vue";
 import EnigmesChoixDifficulte from "@/views/EnigmesChoixDifficulte.vue";
 import ProposerEnigme from "@/views/ProposerEnigme.vue";
 import MonProfil from "@/views/MonProfil.vue";
+import EnigmeSolutionUnique from "@/views/EnigmeSolutionUnique.vue";
 
 const routes = [
   {
@@ -16,7 +17,7 @@ const routes = [
   {
     path: "/enigmes",
     name: "enigmes",
-    component: Enigmes,
+    component: ListeEnigmesParDifficulte,
   },
   {
     path: "/login",
@@ -42,6 +43,11 @@ const routes = [
     path: '/profil',
     name: 'profil',
     component: MonProfil
+  },
+  {
+    path: '/enigme',
+    name: 'enigme-solution-unique',
+    component: EnigmeSolutionUnique,
   },
 ];
 
