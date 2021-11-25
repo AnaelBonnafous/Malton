@@ -1,15 +1,20 @@
 <template>
-  <div class="q-ma-lg">
-    <q-img
-      src="/src/assets/logo_malton.png"
-      width="200px"
-      spinner-color="primary"
-      spinner-size="50px"
-    />
-    <q-btn-group class="q-ml-lg">
-      <q-btn to="/" color="primary" label="Accueil" />
-      <q-btn to="/enigmes" color="secondary" label="Enigmes" />
-    </q-btn-group>
-    <router-view></router-view>
-  </div>
+  <q-layout view="hHh lpR fff">
+    <NavBar />
+    <q-page-container>
+      <router-view />
+    </q-page-container>
+    <Footer />
+  </q-layout>
 </template>
+
+<script>
+import Footer from "./components/Footer.vue";
+import NavBar from "./components/NavBar.vue";
+export default {
+  components: {
+    NavBar,
+    Footer,
+  },
+};
+</script>
