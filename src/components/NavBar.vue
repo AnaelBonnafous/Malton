@@ -20,7 +20,6 @@
         <q-icon :name="item.icon" class="q-mr-sm" />
         {{ item.text }}
       </q-btn>
-      <q-btn :to="{ name: 'enigmes' }" color="secondary" flat>Enigmes</q-btn>
     </q-toolbar>
   </q-header>
 </template>
