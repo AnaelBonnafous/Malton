@@ -1,3 +1,34 @@
+@font-face {
+    font-family: "Emilys Candy";
+    src: url(../fonts/EmilysCandy-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Glacial Indifference Regular";
+    src: url(../fonts/GlacialIndifference-Regular.otf);
+}
+
+@font-face {
+    font-family: "Glacial Indifference Bold";
+    src: url(../fonts/GlacialIndifference-Bold.otf);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Glacial Indifference Regular";
+}
+
+a,
+p,
+span,
+label,
+textarea {
+    font-family: "Glacial Indifference Regular";
+}
 .div-button-difficulties {
 	display: flex;
 	justify-content: space-around;
