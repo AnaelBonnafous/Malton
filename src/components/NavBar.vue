@@ -4,7 +4,7 @@
       <router-link to="/">
         <q-toolbar-title>
           <q-img
-            src="@/assets/logo_malton.png"
+            src="@/assets/MaltonLOGO.svg"
             height="40px"
             width="200px"
             fit="contain"
