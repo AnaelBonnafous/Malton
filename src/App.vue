@@ -1,7 +1,7 @@
 <template>
-  <q-layout view="hHh lpR fff">
+  <q-layout view="hHh lpR fff" class="bg-dark">
     <NavBar />
-    <q-page-container>
+    <q-page-container class="q-mx-lg">
       <router-view />
     </q-page-container>
     <Footer />

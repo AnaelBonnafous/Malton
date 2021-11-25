@@ -2,10 +2,10 @@
   <h1>Sélection du mode de difficulté</h1>
   <div class="bg-primary">
 	<div class="div-button-difficulties" v-for="difficulty in difficulties" :key="difficulty.difficulty">
-		<q-btn 
+		<q-btn
 			:label="difficulty.difficulty"
 			class="bg-secondary text-white"
-			:to="{ name: 'enigmes', params: { difficulty: difficulty['@id']} }"
+			:to="{ name: 'enigmes', params: { difficulty: difficulty['@id'], labelDifficulty: difficulty.difficulty} }"
 		/>
 	</div>
   </div>
