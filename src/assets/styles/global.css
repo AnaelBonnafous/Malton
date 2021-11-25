@@ -1,0 +1,10 @@
+.div-button-difficulties {
+	display: flex;
+	justify-content: space-around;
+}
+
+.div-button-difficulties > a {
+	margin: 15px 0;
+	width:fit-content;
+	min-width: 35%;
+}

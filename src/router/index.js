@@ -15,8 +15,8 @@ const routes = [
     component: Enigmes,
   },
   {
-    path: '/enigmes-difficultes',
-    name: 'enigmes-difficultes',
+    path: '/difficultes',
+    name: 'difficultes',
     component: EnigmesChoixDifficulte
   }
 ];

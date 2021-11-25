@@ -14,11 +14,8 @@ export default {
   data: () => ({
     enigmes: []
   }),
-  created() {
-    console.log(this.difficulte)
-  },
   async created() {
-    const response = await axios.get("https://localhost:8000/api/enigmes?difficulte=" + this.difficulte);
+    const response = await axios.get("enigmes?difficulty=" + this.difficulte);
     this.enigmes = response.data["hydra:member"];
   },
 };
