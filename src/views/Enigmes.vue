@@ -1,20 +1,13 @@
 <template>
-  <h1 class="text-h3">Les Énigmes</h1>
-  <pre>
-    {{ enigmes }}
-  </pre>
+  <ListeEnigmesParDifficulte difficulte='/api/difficultes/6'/>
 </template>
 
 <script>
-import axios from "axios";
+import ListeEnigmesParDifficulte from '@/components/ListeEnigmesParDifficulte.vue';
 
 export default {
-  data: () => ({
-    enigmes: [],
-  }),
-  async mounted() {
-    const response = await axios.get("https://localhost:8000/api/enigmes");
-    this.enigmes = response.data["hydra:member"];
-  },
+  components: {
+    ListeEnigmesParDifficulte
+  }
 };
 </script>

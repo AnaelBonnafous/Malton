@@ -4,6 +4,8 @@ import App from "./App.vue";
 const app = createApp(App);
 
 import router from "@/router";
+import '@/assets/styles/global.css';
+
 app.use(router);
 
 import { Quasar } from "quasar";

@@ -1,6 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Accueil from "@/views/Accueil.vue";
 import Enigmes from "@/views/Enigmes.vue";
+import EnigmesChoixDifficulte from "@/views/EnigmesChoixDifficulte.vue";
 
 const routes = [
   {
@@ -13,6 +14,11 @@ const routes = [
     name: "enigmes",
     component: Enigmes,
   },
+  {
+    path: '/enigmes-difficultes',
+    name: 'enigmes-difficultes',
+    component: EnigmesChoixDifficulte
+  }
 ];
 
 const router = createRouter({
