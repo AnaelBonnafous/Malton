@@ -13,7 +13,7 @@ export default {
     enigmes: [],
   }),
   async created() {
-    const response = await axios.get("http://localhost:8000/api/enigmes");
+    const response = await axios.get("https://localhost:8000/api/enigmes");
     this.enigmes = response.data["hydra:member"];
   },
 };
