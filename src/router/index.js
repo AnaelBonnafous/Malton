@@ -4,6 +4,8 @@ import Enigmes from "@/views/Enigmes.vue";
 import Login from "@/views/Login.vue";
 import Register from "@/views/Register.vue";
 import EnigmesChoixDifficulte from "@/views/EnigmesChoixDifficulte.vue";
+import ProposerEnigme from "@/views/ProposerEnigme.vue";
+import MonProfil from "@/views/MonProfil.vue";
 
 const routes = [
   {
@@ -30,7 +32,17 @@ const routes = [
     path: '/difficultes',
     name: 'difficultes',
     component: EnigmesChoixDifficulte
-  }
+  },
+  {
+    path: '/proposer',
+    name: 'proposer',
+    component: ProposerEnigme
+  },
+  {
+    path: '/profil',
+    name: 'profil',
+    component: MonProfil
+  },
 ];
 
 const router = createRouter({
