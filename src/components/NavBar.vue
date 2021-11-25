@@ -1,26 +1,35 @@
 <template>
-  <q-header bordered class="bg-secondary text-white">
-    <q-toolbar>
-      <router-link to="/">
-        <q-toolbar-title>
-          <q-img
-            src="@/assets/logo_malton.png"
-            height="40px"
-            width="200px"
-            fit="contain"
-          ></q-img>
-        </q-toolbar-title>
-      </router-link>
-      <q-btn
-        v-for="item in items"
-        :key="item.route"
-        :to="{ name: item.route }"
-        flat
-      >
-        <q-icon :name="item.icon" class="q-mr-sm" />
-        {{ item.text }}
-      </q-btn>
-      <q-btn :to="{ name: 'enigmes' }" color="secondary" flat>Enigmes</q-btn>
+  <q-header bordered class="bg-secondary text-white" style="height: 100px">
+    <q-toolbar class="row justify-start items-center full-height">
+      <div class="col-3">
+        <router-link to="/">
+          <q-toolbar-title>
+            <q-img
+              src="@/assets/MaltonLOGO.svg"
+              height="100px"
+              width="200px"
+              fit="contain"
+            ></q-img>
+          </q-toolbar-title>
+        </router-link>
+      </div>
+      <div class="col-6 text-center">
+        <q-btn
+          v-for="item in items"
+          :key="item.route"
+          :to="{ name: item.route }"
+          flat
+        >
+          <q-icon :name="item.icon" class="q-mr-sm" />
+          {{ item.text }}
+        </q-btn>
+      </div>
+      <div class="col-3 text-right">
+        <span>
+          <q ref="">Un gentleman n'abandonne jamais un puzzle non résolu</q> -
+          Professeur Layton
+        </span>
+      </div>
     </q-toolbar>
   </q-header>
 </template>
