@@ -19,23 +19,3 @@
 </div>
 
 </template>
-
-<style scoped>
-
-h1 {
-    font-size: 50px;
-}
-
-.container {
-    text-align: center;
-}
-
-</style>
-
-<script>
-export default {
-  data: () => ({
-
-  }),
-};
-</script>
