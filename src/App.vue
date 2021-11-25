@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div class="row-img">
     <div class="q-ma-lg">
       <q-img
@@ -21,3 +22,24 @@
 
 
 </style>
+=======
+  <q-layout view="hHh lpR fff">
+    <NavBar />
+    <q-page-container>
+      <router-view />
+    </q-page-container>
+    <Footer />
+  </q-layout>
+</template>
+
+<script>
+import Footer from "./components/Footer.vue";
+import NavBar from "./components/NavBar.vue";
+export default {
+  components: {
+    NavBar,
+    Footer,
+  },
+};
+</script>
+>>>>>>> master
