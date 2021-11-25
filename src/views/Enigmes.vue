@@ -12,8 +12,8 @@ export default {
   data: () => ({
     enigmes: [],
   }),
-  async mounted() {
-    const response = await axios.get("https://localhost:8000/api/enigmes");
+  async created() {
+    const response = await axios.get("http://localhost:8000/api/enigmes");
     this.enigmes = response.data["hydra:member"];
   },
 };
