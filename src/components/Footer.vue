@@ -7,3 +7,9 @@
     </q-toolbar>
   </q-footer>
 </template>
+
+<style scoped>
+.q-toolbar__title {
+  font-family: "Emilys Candy"; 
+}
+</style>
