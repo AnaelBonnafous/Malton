@@ -1,41 +1,9 @@
 <template>
-
-<div class="container">
-
-  <h1> Bienvenue sur le site de résolution d'énigmes </h1>
-
-  <a href="/login">
-    <q-btn color="primary">
-      Connexion
-    </q-btn>
-  </a>
-
-  <a href="/register">
-    <q-btn color="primary">
-      S'inscrire
-    </q-btn>
-  </a>
-
-</div>
-
+  <q-page class="text-center">
+    <h1 class="text-h3">Bienvenue sur le site de résolution d'énigmes</h1>
+    <div class="q-gutter-lg">
+      <q-btn :to="{ name: 'login' }" color="primary">Connexion</q-btn>
+      <q-btn :to="{ name: 'register' }" color="primary">S'inscrire</q-btn>
+    </div>
+  </q-page>
 </template>
-
-<style scoped>
-
-h1 {
-    font-size: 50px;
-}
-
-.container {
-    text-align: center;
-}
-
-</style>
-
-<script>
-export default {
-  data: () => ({
-
-  }),
-};
-</script>

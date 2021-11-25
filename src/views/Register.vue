@@ -1,83 +1,89 @@
 <template>
-    
-    <div class="container">
-        <form>
-            <h1>Inscription au site d'énigmes</h1>
+  <q-page class="text-center">
+    <form @submit.prevent="submit()" class="q-py-lg q-mx-auto q-gutter-lg">
+    <h1 class="text-h3">Inscription au site d'énigmes</h1>
+      <q-input
+        v-model="form.pseudo"
+        label="Pseudo"
+        placeholder="Professeur Layton"
+        outlined
+      />
 
-            <div class="pseudo">
-                <q-input outlined v-model="pseudo" placeholder="Pseudo" />
-            </div>
+      <q-input
+        v-model="form.email"
+        type="email"
+        label="Adresse email"
+        placeholder="professeur.layton@mail.com"
+        outlined
+      />
 
-            <div class="email">
-                <q-input outlined v-model="email" type="email" placeholder="Adresse email" />
-            </div>
+      <q-input
+        v-model="form.password"
+        :type="password_visible ? 'text' : 'password'"
+        label="Mot de passe"
+        placeholder="******"
+        outlined
+      >
+        <template #append>
+          <q-icon
+            @click="togglePasswordVisibility()"
+            :name="password_visible ? 'fas fa-eye' : 'fas fa-eye-slash'"
+            class="cursor-pointer"
+          />
+        </template>
+      </q-input>
 
-            <div class="password">
-                <q-input outlined v-model="password" :type="isPwd ? 'password' : 'text'" placeholder="Mot de passe">
-                    <template v-slot:append>
-                    <q-icon
-                        :name="isPwd ? 'visibility_off' : 'visibility'"
-                        class="cursor-pointer"
-                        @click="isPwd = !isPwd"
-                    />
-                    </template>
-                </q-input>
-            </div>
+      <q-input
+        v-model="form.confirm"
+        :rules="[
+          (val) => val == password || 'Le mot de passe ne correspond pas',
+        ]"
+        :type="password_visible ? 'text' : 'password'"
+        label="Confirmer le mot de passe"
+        placeholder="******"
+        outlined
+        no-error-icon
+      >
+        <template #append>
+          <q-icon
+            @click="togglePasswordVisibility()"
+            :name="password_visible ? 'fas fa-eye' : 'fas fa-eye-slash'"
+            class="cursor-pointer"
+          />
+        </template>
+      </q-input>
 
-            <div class="confirm-password">
-                <q-input outlined v-model="confirmPassword" :rules="[val => val==password || 'Le mot de passe ne correspond pas']" :type="isPwd ? 'password' : 'text'" placeholder="Confirmer le mot de passe">
-                    <template v-slot:append>
-                    <q-icon
-                        :name="isPwd ? 'visibility_off' : 'visibility'"
-                        class="cursor-pointer"
-                        @click="isPwd = !isPwd"
-                    />
-                    </template>
-                </q-input>
-            </div>
+      <q-btn type="submit" color="primary">S'inscrire</q-btn>
 
-            <div class="submit">
-                <q-btn color="primary">
-                    S'inscrire
-                </q-btn>
-            </div>
-
-        </form>
-
-        <div class="ok-compte">
-            Déjà un compte ? <a href="/login">Se connecter</a>
-        </div>
-
-    </div>
-
+      <div>
+        Déjà un compte ?
+        <router-link :to="{ name: 'login' }">Se connecter</router-link>
+      </div>
+    </form>
+  </q-page>
 </template>
-
-<style scoped>
-
-h1 {
-    font-size: 50px;
-}
-
-.container {
-    text-align: center;
-}
-
-form > div {
-    margin-bottom: 25px;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 50%;
-}
-
-</style>
 
 <script>
 export default {
-    data: () => ({
-        pseudo: "",
-        password: "",
-        isPwd: true,
-        confirmPassword: ""
-    }),
-}
+  data: () => ({
+    form: {
+      pseudo: "",
+      password: "",
+      confirm: "",
+    },
+    password_visible: false,
+  }),
+  methods: {
+    togglePasswordVisibility() {
+      this.password_visible = !this.password_visible;
+    },
+    submit() {},
+  },
+};
 </script>
+
+<style scoped>
+form {
+  max-width: 50%;
+}
+</style>
