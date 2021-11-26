@@ -1,11 +1,17 @@
 <template>
   <div class="bg-primary row justify-center q-mb-lg">
-    <div class="enigme" v-for="enigmeF in enigmes" v-on:click="redirectionPageEnigme(enigmeF.enigme_id)">
-      <q-img :src="'src/assets/images/enigmes/' + enigmeF.enigme.image_url" class="image-enigme">
+    <div class="enigme" v-for="enigme in enigmesFavorites" v-on:click="redirectionPageEnigme(enigme.enigme.id)">
+      <q-img :src="'src/assets/images/enigmes/' + enigme.enigme.image_url" class="image-enigme">
         <div class="absolute-full text-subtitle2 enigme-text text-left column text-body1">
-          <span> Nom : {{ enigmeF.enigme.name}}</span>
-          <span>Description : {{ enigmeF.enigme.statement}}</span>
-          <span>Difficulté : {{ enigmeF.enigme.difficulty.difficulty }}</span>
+          <span class="q-mb-md block text-bold">Nom :
+            <span class="text-weight-regular" v-html="this.$decodeHtml(enigme.enigme.name)"></span>
+          </span>
+          <span class="q-mb-md block text-bold">Description :
+            <span class="text-weight-regular" v-html="this.$decodeHtml(enigme.enigme.brief_description)"></span>
+          </span>
+          <span class="q-mb-md block text-bold">Difficulté :
+            <span class="text-weight-regular" v-html="enigme.enigme.difficulty.difficulty"></span>
+          </span>
         </div>
       </q-img>
     </div>
@@ -16,11 +22,12 @@
 export default {
   name: 'ListeEnigmesFavorites',
   data: () => ({
-    enigmes: [],
+    enigmesFavorites: [],
   }),
   async created() {
     const response = await this.$axios.get("enigme_favorites?user=api/users/1");
-    this.enigmes = response.data["hydra:member"];
+    this.enigmesFavorites = response.data["hydra:member"];
+
   },
   methods: {
     redirectionPageEnigme(enigmeId) {
@@ -36,18 +43,18 @@ export default {
 </script>
 
 <style scoped>
-.bloc-enigmes{
-  display:flex;
+.bloc-enigmes {
+  display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 
-.bloc-enigme-name{
+.bloc-enigme-name {
   color: #fff;
   opacity: 90%;
   position: absolute;
-  left:0;
-  right:0;
-  bottom:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 </style>
