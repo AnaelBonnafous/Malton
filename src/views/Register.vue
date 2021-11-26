@@ -3,6 +3,7 @@
     <form @submit.prevent="submit()" class="q-py-lg q-mx-auto q-gutter-lg">
     <h1 class="text-h3">Inscription au site d'énigmes</h1>
       <q-input
+        class="input-form"
         v-model="form.pseudo"
         label="Pseudo"
         placeholder="Professeur Layton"
@@ -10,6 +11,7 @@
       />
 
       <q-input
+        class="input-form"
         v-model="form.email"
         type="email"
         label="Adresse email"
@@ -18,6 +20,7 @@
       />
 
       <q-input
+        class="input-form"
         v-model="form.password"
         :type="password_visible ? 'text' : 'password'"
         label="Mot de passe"
@@ -34,6 +37,7 @@
       </q-input>
 
       <q-input
+        class="input-form"
         v-model="form.confirm"
         :rules="[
           (val) => val == password || 'Le mot de passe ne correspond pas',
@@ -86,4 +90,9 @@ export default {
 form {
   max-width: 50%;
 }
+
+.input-form {
+  background-color: white;
+}
+
 </style>
