@@ -40,7 +40,7 @@
         class="input-form"
         v-model="form.confirm"
         :rules="[
-          (val) => val == password || 'Le mot de passe ne correspond pas',
+          (val) => val == form.password || 'Le mot de passe ne correspond pas',
         ]"
         :type="password_visible ? 'text' : 'password'"
         label="Confirmer le mot de passe"
