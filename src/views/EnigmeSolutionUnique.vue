@@ -1,10 +1,3 @@
-<template>
-  <h1 class="text-h3">Intitulé de l'énigme : {{ enigme?.name}} ({{ enigme?.number_picarats }} picarats)</h1>
-
-  <!-- image énigme => composant -->
-  <div class="bloc-intitule-enigme">
-    <img class="center-image" :src="'src/assets/images/enigmes/' + enigme?.image_url">
-  </div>
 
   <!-- intitulé => composant -->
   <div>

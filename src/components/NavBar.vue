@@ -68,6 +68,14 @@
           <q ref="">Un gentleman n'abandonne jamais un puzzle non résolu</q> -
           Professeur Layton
         </span>
+        <audio src="./src/assets/audios/theme.mp3" loop></audio>
+        <q-btn
+          @click="toggleAudio()"
+          :icon="audio_playing ? 'fas fa-volume-up' : 'fas fa-volume-mute'"
+          size="xs"
+          round
+          flat
+        />
       </div>
     </q-toolbar>
   </q-header>
@@ -95,6 +103,7 @@ export default {
         text: "Proposer une énigme",
       },
     ],
+    audio_playing: false,
   }),
   computed: {
     ...mapGetters("user", ["user", "authenticated"]),
@@ -106,6 +115,15 @@ export default {
     logout() {
       this.storeLogout();
       this.$router.push({ name: "accueil" });
+    },
+    toggleAudio() {
+      const audio = document.getElementsByTagName("audio")[0];
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+      this.audio_playing = !audio.paused;
     },
   },
 };
