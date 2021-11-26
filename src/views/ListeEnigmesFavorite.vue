@@ -1,32 +1,24 @@
 <template>
   <q-page class="text-center">
     <h1 class="text-h3">Mes énigmes favorites</h1>
-    <div class="bg-primary row justify-center q-mb-lg">
-      <div class="enigme">
-        <q-img src="src/assets/images/enigmes/contre_la_montre.jpg" class="image-enigme">
-          <div class="absolute-full text-subtitle2 enigme-text text-left column text-body1">
-            <span> Nom : Test</span>
-            <span>Description : Une description</span>
-            <span>Difficulté : Facile</span>
-          </div>
-        </q-img>
-      </div>
-      <div class="enigme">
-        <q-img src="src/assets/images/enigmes/contre_la_montre.jpg" class="image-enigme">
-          <div class="absolute-full text-subtitle2 enigme-text text-left column text-body1">
-            <span> Nom : Test</span>
-            <span>Description : Une description</span>
-            <span>Difficulté : Facile</span>
-          </div>
-        </q-img>
-      </div>
-    </div>
+    <ListeEnigmesFavorites/>
   </q-page>
 </template>
 
 <script>
+import ListeEnigmesFavorites from '@/components/ListeEnigmesFavorites.vue';
+
 export default {
-  name: "ListeEnigmesFavorite"
+  name: "ListeEnigmesFavorite",
+  components: {
+    ListeEnigmesFavorites
+  },
+  data: () => ({
+
+  }),
+  created () {
+
+  }
 }
 </script>
 
