@@ -3,6 +3,7 @@
     <form @submit.prevent="submit()" class="q-py-lg q-mx-auto q-gutter-lg">
     <h1 class="text-h3">Connexion au site d'énigmes</h1>
       <q-input
+        class="input-form"
         v-model="form.email"
         type="email"
         label="Adresse email"
@@ -11,6 +12,7 @@
       />
 
       <q-input
+        class="input-form"
         v-model="form.password"
         :type="password_visible ? 'text' : 'password'"
         label="Mot de passe"
@@ -58,4 +60,9 @@ export default {
 form {
   max-width: 50%;
 }
+
+.input-form {
+  background-color: white;
+}
+
 </style>
