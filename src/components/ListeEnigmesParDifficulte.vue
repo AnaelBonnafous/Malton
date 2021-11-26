@@ -40,15 +40,6 @@ export default {
 </script>
 
 <style scoped>
-  .enigme{
-    width:40%;
-    max-width: 400px;
-    height: 250px;
-    position: relative;
-    margin: 15px 0;
-    cursor: pointer;
-  }
-
   .bloc-enigmes{
     display:flex;
     justify-content: space-around;
@@ -62,11 +53,5 @@ export default {
     left:0;
     right:0;
     bottom:0;
-  }
-
-  .image-enigme{
-    object-fit: cover;
-    min-width: 100%;
-    height: 100%;
   }
 </style>
