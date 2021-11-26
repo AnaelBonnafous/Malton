@@ -55,6 +55,7 @@ export default {
     }),
     login() {
       this.storeLogin(this.form);
+      this.$router.push({ name: "profil" });
     },
     togglePasswordVisibility() {
       this.password_visible = !this.password_visible;
