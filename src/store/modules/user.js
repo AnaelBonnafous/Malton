@@ -1,7 +1,7 @@
 export default {
   namespaced: true,
   state: () => ({
-    user: {},
+    user: null,
     authenticated: false,
   }),
 
@@ -9,6 +9,11 @@ export default {
     login({ commit }, user) {
       commit("SET_USER", user);
       commit("SET_AUTHENTICATED", true);
+    },
+
+    logout({ commit }) {
+      commit("SET_USER", null);
+      commit("SET_AUTHENTICATED", false);
     },
   },
 
