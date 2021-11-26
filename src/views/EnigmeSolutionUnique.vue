@@ -18,7 +18,6 @@ export default {
       this.$router.push('difficultes');
     }
     const response = await this.$axios.get("enigmes/" + this.enigmeId);
-    console.log(response)
     this.enigme = response.data;
     console.log(this.enigme)
   },
