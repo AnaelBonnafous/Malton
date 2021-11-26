@@ -32,7 +32,7 @@ export default {
   methods: {
     redirectionPageEnigme(enigmeId) {
       this.$router.push({
-        name: 'enigme-solution-unique',
+        name: 'enigmes',
         params: {
           enigmeId: enigmeId,
         }
