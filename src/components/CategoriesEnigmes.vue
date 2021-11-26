@@ -2,6 +2,7 @@
   <div class="bloc-categories">
     <q-btn
         v-for="category in categories"
+        :key="category.id"
         class="bg-secondary text-white q-btn-category"
     >
       {{ category.name }}
