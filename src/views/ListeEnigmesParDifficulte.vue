@@ -1,12 +1,16 @@
 <template>
+  <h1 class="text-h3">Les Énigmes {{ labelDifficulty }}</h1>
+  <CategoriesEnigmes/>
   <ListeEnigmesParDifficulte :difficulty='difficulty' :labelDifficulty='labelDifficulty'/>
 </template>
 
 <script>
 import ListeEnigmesParDifficulte from '@/components/ListeEnigmesParDifficulte.vue';
+import CategoriesEnigmes from "@/components/CategoriesEnigmes.vue";
 
 export default {
   components: {
+    CategoriesEnigmes,
     ListeEnigmesParDifficulte
   },
   data: () => ({

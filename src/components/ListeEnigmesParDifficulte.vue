@@ -1,6 +1,4 @@
 <template>
-  <h1 class="text-h3">Les Énigmes {{ labelDifficulty }}</h1>
-  <!-- insérer component catégorie énigmes ici -->
   <div class="bg-primary bloc-enigmes">
     <div
         v-for="enigme in enigmes"
@@ -18,7 +16,6 @@ import axios from "axios";
 
 export default {
   name: 'ListeEnigmesParDifficulte',
-  props: ['difficulty', 'labelDifficulty'],
   data: () => ({
     enigmes: [],
   }),
