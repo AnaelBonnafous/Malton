@@ -14,8 +14,6 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   name: 'ListeEnigmesParDifficulte',
   props: ['difficulty', 'labelDifficulty'],
@@ -23,7 +21,7 @@ export default {
     enigmes: [],
   }),
   async created() {
-    const response = await axios.get("enigmes?difficulty=" + this.difficulty);
+    const response = await this.$axios.get("enigmes?difficulty=" + this.difficulty);
     this.enigmes = response.data["hydra:member"];
   },
   methods: {
