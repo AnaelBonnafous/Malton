@@ -16,14 +16,12 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   data: () => ({
     difficulties: [],
   }),
   async created() {
-    const response = await axios.get('difficultes');
+    const response = await this.$axios.get('difficultes');
     this.difficulties = response.data["hydra:member"];
   },
 };

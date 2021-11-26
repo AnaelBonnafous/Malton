@@ -4,7 +4,7 @@ const app = createApp(App);
 
 // Quasar
 import { Quasar } from "quasar";
-import '@quasar/extras/fontawesome-v5/fontawesome-v5.css'
+import "@quasar/extras/fontawesome-v5/fontawesome-v5.css";
 import "quasar/src/css/index.sass";
 app.use(Quasar, {
   plugins: {},
@@ -12,13 +12,15 @@ app.use(Quasar, {
 
 // Axios
 import axios from "axios";
-axios.defaults.baseURL = import.meta.env.VITE_API_URL || "https://localhost:8000/api/";
+axios.defaults.baseURL =
+  import.meta.env.VITE_API_URL || "https://localhost:8000/api/";
+app.config.globalProperties.$axios = axios;
 
 // VueRouter
 import router from "@/router";
 app.use(router);
 
 // Fichiers CSS supplémentaires
-import '@/assets/styles/global.css';
+import "@/assets/styles/global.css";
 
 app.mount("#app");

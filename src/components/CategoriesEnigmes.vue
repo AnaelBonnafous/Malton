@@ -10,15 +10,13 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   name: 'CategoriesEnigmes',
   data: () => ({
     categories: [],
   }),
   async created() {
-    const response = await axios.get('categories');
+    const response = await this.$axios.get('categories');
     this.categories = response.data["hydra:member"];
   },
   methods: {

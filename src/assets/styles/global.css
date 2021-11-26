@@ -13,6 +13,10 @@
     src: url(@/assets/fonts/GlacialIndifference-Bold.otf);
 }
 
+body {
+    cursor:url(https://cdn.custom-cursor.com/db/7602/32/magnifying-glass-cursor.png) , default!important;
+}
+
 h1,
 h2,
 h3,

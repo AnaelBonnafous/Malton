@@ -7,8 +7,6 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   data: () => ({
     enigmeId: null,
@@ -19,8 +17,7 @@ export default {
     if (!this.enigmeId) {
       this.$router.push('difficultes');
     }
-    const response = await axios.get("enigmes/" + this.enigmeId);
-    console.log(response)
+    const response = await this.$axios.get("enigmes/" + this.enigmeId);
     this.enigme = response.data;
     console.log(this.enigme)
   },
