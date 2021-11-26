@@ -2,6 +2,7 @@
   <div class="bg-primary bloc-enigmes">
     <div
         v-for="enigme in enigmes"
+        :key="enigme.id"
         v-on:click="redirectionPageEnigme(enigme.id)"
         class="enigme"
     >

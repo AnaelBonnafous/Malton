@@ -1,7 +1,7 @@
 <template>
   <q-page class="text-center">
-    <form @submit.prevent="submit()" class="q-py-lg q-mx-auto q-gutter-lg">
-    <h1 class="text-h3">Connexion au site d'énigmes</h1>
+    <form @submit.prevent="login()" class="q-py-lg q-mx-auto q-gutter-lg">
+      <h1 class="text-h3">Connexion au site d'énigmes</h1>
       <q-input
         v-model="form.email"
         type="email"
@@ -41,6 +41,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data: () => ({
     form: {
@@ -50,10 +52,16 @@ export default {
     password_visible: false,
   }),
   methods: {
+    ...mapActions({
+      storeLogin: "user/login",
+    }),
+    login() {
+      this.storeLogin(this.form);
+      this.$router.push({ name: "profil" });
+    },
     togglePasswordVisibility() {
       this.password_visible = !this.password_visible;
     },
-    submit() {},
   },
 };
 </script>

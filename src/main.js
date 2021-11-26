@@ -20,6 +20,10 @@ app.config.globalProperties.$axios = axios;
 import router from "@/router";
 app.use(router);
 
+// Vuex
+import store from "@/store";
+app.use(store);
+
 // Fichiers CSS supplémentaires
 import "@/assets/styles/global.css";
 
