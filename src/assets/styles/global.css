@@ -68,3 +68,12 @@ img{
 .q-field--outlined .q-field__control {
     background-color: white !important;
 }
+
+.center-image {
+    display: block;
+    margin: 0 auto;
+}
+
+.red {
+    color: red;
+}

@@ -27,4 +27,9 @@ app.use(store);
 // Fichiers CSS supplémentaires
 import "@/assets/styles/global.css";
 
+// Global methods
+app.config.globalProperties.$decodeHtml = function (str) {
+  return str.replace(/(\\r)*\\n/g, '<br>');
+}
+
 app.mount("#app");
