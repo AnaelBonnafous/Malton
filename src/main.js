@@ -29,6 +29,9 @@ import "@/assets/styles/global.css";
 
 // Global methods
 app.config.globalProperties.$decodeHtml = function (str) {
+  if (!str) {
+    return '';
+  }
   return str.replace(/(\\r)*\\n/g, '<br>');
 }
 

@@ -77,3 +77,9 @@ img{
 .red {
     color: red;
 }
+
+.enigme-valider{
+    width:200px;
+    max-width: 100%;
+    margin:20px auto 0 auto;
+}

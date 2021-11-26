@@ -20,8 +20,10 @@ export default {
     enigmes: [],
   }),
   async created() {
-    const response = await this.$axios.get("enigmes?difficulty=" + this.difficulty);
-    this.enigmes = response.data["hydra:member"];
+    if (this.difficulty) {
+      const response = await this.$axios.get("enigmes?difficulty=" + this.difficulty);
+      this.enigmes = response.data["hydra:member"];
+    }
   },
   methods: {
     redirectionPageEnigme(enigmeId) {

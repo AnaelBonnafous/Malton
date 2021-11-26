@@ -6,7 +6,7 @@ import Register from "@/views/Register.vue";
 import EnigmesChoixDifficulte from "@/views/EnigmesChoixDifficulte.vue";
 import ProposerEnigme from "@/views/ProposerEnigme.vue";
 import MonProfil from "@/views/MonProfil.vue";
-import EnigmeSolutionUnique from "@/views/EnigmeSolutionUnique.vue";
+import EnigmeSolutionUnique from "@/views/Enigme.vue";
 import ListeEnigmesFavorite from "@/views/ListeEnigmesFavorite.vue";
 
 const routes = [
