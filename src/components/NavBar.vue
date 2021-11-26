@@ -26,7 +26,7 @@
         <q-btn class="no-box-shadow no-border" label="Mon compte">
           <q-menu class="no-border-radius">
             <q-list style="min-width: 150px">
-              <q-item clickable v-ripple to="my_profile">
+              <q-item clickable v-ripple to="profil">
                 <q-icon size="xs" class="q-mr-sm q-mt-auto q-mb-auto" name="fas fa-user-circle"></q-icon>
                 <q-item-section>Mon profil</q-item-section>
               </q-item>
