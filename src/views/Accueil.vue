@@ -1,10 +1,6 @@
 <template>
   <q-page class="text-center">
     <h1 class="text-h3">Bienvenue sur le site de résolution d'énigmes</h1>
-    <div class="q-gutter-lg">
-      <q-btn :to="{ name: 'login' }" color="primary">Connexion</q-btn>
-      <q-btn :to="{ name: 'register' }" color="primary">S'inscrire</q-btn>
-    </div>
     <h2 class="text-h4 text-left">Classement des meilleures énigmes</h2>
     <div class="bg-primary row justify-center q-mb-lg">
       <div class="enigme">
