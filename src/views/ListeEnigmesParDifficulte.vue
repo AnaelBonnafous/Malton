@@ -1,7 +1,12 @@
 <template>
   <h1 class="text-h3">Les Énigmes {{ labelDifficulty }}</h1>
-  <CategoriesEnigmes/>
-  <ListeEnigmesParDifficulte :difficulty='difficulty'/>
+  <CategoriesEnigmes
+    @filter="filterByOneCategorie"
+  />
+  <ListeEnigmesParDifficulte 
+    :difficulty='difficulty'
+    :category='category'
+  />
 </template>
 
 <script>
@@ -14,6 +19,7 @@ export default {
     ListeEnigmesParDifficulte
   },
   data: () => ({
+    category: null,
     difficulty: null,
     labelDifficulty: null,
   }),
@@ -22,6 +28,11 @@ export default {
     this.labelDifficulty = this.$route.params.labelDifficulty;
     if (!this.difficulty || !this.labelDifficulty) {
       this.$router.push('difficultes'); 
+    }
+  },
+  methods: {
+    filterByOneCategorie (category) {
+      this.category = category
     }
   }
 };
