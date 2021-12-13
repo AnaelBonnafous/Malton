@@ -12,6 +12,7 @@
     </q-input>
     <q-btn
         class="bg-secondary text-white enigme-valider"
+        @click="sendAnswer"
     >
       Valider
     </q-btn>
@@ -21,9 +22,30 @@
 <script>
 export default {
   name: 'ReponseSolutionUnique',
+  props: {
+    enigmeId: {
+      required: true,
+    },
+  },
   data: () => ({
     answer: null,
   }),
+  methods: {
+    async sendAnswer() {
+      if(!this.answer) {
+        return;
+      }
+      
+      const response = await this.$axios.get('check_reponses_enigmes/' + this.enigmeId + '/unique/' + this.answer);
+      const data = response.data['hydra:member'][0];
+
+      if(data['message_response_is_incorrect']) {
+        this.$emit('incorrect', data['message_response_is_incorrect']);
+      } else {
+        this.$emit('correct', data['message_response_is_correct'], data['image_response_is_correct']);
+      }
+    }
+  }
 };
 </script>
 
