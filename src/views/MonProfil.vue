@@ -3,7 +3,7 @@
     <h1 class="text-h3 title-profil">Mon profil</h1>
     <div class="block-flex-profil">
       <div class="flex-img">
-        <img src="src/assets/images/profil/layton.png" class="image-profil">
+        <img src="@/assets/images/layton.jpg" class="image-profil">
       </div>
       <div class="flex-text">
         <div class="text-h5 text-white text-score"><span>Score total :</span> 850 picarats</div>

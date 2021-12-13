@@ -57,7 +57,7 @@
           </q-btn>
         </template>
         <template v-else>
-          <q-btn :to="{ name: 'login' }" flat class="bg-primary">
+          <q-btn :to="{ name: 'login' }" flat class="bg-primary q-ml-sm">
             <q-icon name="fas fa-sign-in-alt" class="q-mr-sm" />
             Connexion
           </q-btn>
