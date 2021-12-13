@@ -1,12 +1,13 @@
 export default {
   namespaced: true,
   state: () => ({
-    user: null,
-    authenticated: false,
+    user: JSON.parse(localStorage.getItem("user")),
+    authenticated: JSON.parse(localStorage.getItem("authenticated")),
   }),
 
   actions: {
     login({ commit }, user) {
+      delete user.password;
       commit("SET_USER", user);
       commit("SET_AUTHENTICATED", true);
     },
@@ -20,10 +21,12 @@ export default {
   mutations: {
     SET_USER(state, user) {
       state.user = user;
+      localStorage.setItem("user", JSON.stringify(state.user));
     },
 
     SET_AUTHENTICATED(state, authenticated) {
       state.authenticated = authenticated;
+      localStorage.setItem("authenticated", JSON.stringify(state.authenticated));
     },
   },
 
