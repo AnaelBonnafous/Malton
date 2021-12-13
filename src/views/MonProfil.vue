@@ -17,14 +17,43 @@
 
     <div class="block-enigme-fav">
       <h1 class="text-h3 title-profil">Enigmes favorites</h1>
-      <div class="block-flex-img">
-        <div>
-          <img src="src/assets/images/enigmes/contre_la_montre.jpg" class="image-profil">
-        </div>
-        <div>
-          <img src="src/assets/images/enigmes/ensemencement.jpg" class="image-profil">
-        </div>
-      </div>
+      <q-carousel
+          v-model="slide"
+          transition-prev="slide-right"
+          transition-next="slide-left"
+          swipeable
+          animated
+          control-color="primary"
+          navigation
+          padding
+          arrows
+          class="carousel-enigme-fav shadow-2 rounded-borders"
+      >
+        <q-carousel-slide :name="1" class="column no-wrap">
+          <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
+            <img src="src/assets/images/enigmes/contre_la_montre.jpg" />
+            <img src="src/assets/images/enigmes/contre_la_montre.jpg" />
+          </div>
+        </q-carousel-slide>
+        <q-carousel-slide :name="2" class="column no-wrap">
+          <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
+            <img src="src/assets/images/enigmes/contre_la_montre.jpg" />
+            <img src="src/assets/images/enigmes/contre_la_montre.jpg" />
+          </div>
+        </q-carousel-slide>
+        <q-carousel-slide :name="3" class="column no-wrap">
+          <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
+            <img src="src/assets/images/enigmes/contre_la_montre.jpg" />
+            <img src="src/assets/images/enigmes/contre_la_montre.jpg" />
+          </div>
+        </q-carousel-slide>
+        <q-carousel-slide :name="4" class="column no-wrap">
+          <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
+            <img src="src/assets/images/enigmes/contre_la_montre.jpg" />
+            <img src="src/assets/images/enigmes/contre_la_montre.jpg" />
+          </div>
+        </q-carousel-slide>
+      </q-carousel>
     </div>
 
     <div class="block-score-diff">
@@ -56,11 +85,17 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { ref } from 'vue';
 
 export default {
   computed: {
     ...mapGetters("user", ["user"]),
   },
+  setup () {
+    return {
+      slide: ref('style'),
+    }
+  }
 };
 </script>
 
@@ -72,15 +107,15 @@ export default {
   border-radius: 20px;
 }
 
-.block-flex-img, .block-flex-circular {
+.carousel-enigme-fav {
+  background-color: #2E2525;
+}
+
+.block-flex-circular {
   display: flex;
 }
 
-.block-flex-img > div, .block-flex-circular > div {
-  flex: 1;
-}
-
-.flex-img {
+.block-flex-circular > div {
   flex: 1;
 }
 
