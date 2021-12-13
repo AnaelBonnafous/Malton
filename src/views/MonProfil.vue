@@ -3,7 +3,7 @@
     <h1 class="text-h3 title-profil q-pa-lg">Mon profil</h1>
     <div class="block-flex-profil">
       <div class="flex-img q-ml-lg">
-        <img src="@/assets/images/layton.jpg" class="image-profil radius-50 q-mt-md q-mb-sm">
+        <img src="@/assets/images/profil/layton.png" class="image-profil radius-50 q-mt-md q-mb-sm">
       </div>
       <div class="flex-text q-ml-lg">
         <div class="text-h5 text-white text-score"><span>Score total :</span> 850 picarats</div>
