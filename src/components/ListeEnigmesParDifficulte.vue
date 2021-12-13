@@ -15,17 +15,27 @@
 <script>
 export default {
   name: 'ListeEnigmesParDifficulte',
-  props: ['difficulty'],
+  props: ['difficulty', 'category'],
   data: () => ({
     enigmes: [],
   }),
-  async created() {
+  created() {
     if (this.difficulty) {
-      const response = await this.$axios.get("enigmes?difficulty=" + this.difficulty);
-      this.enigmes = response.data["hydra:member"];
+      this.getEnigmes('?difficulty=' + this.difficulty);
+    }
+  },
+  watch: {
+    category: function(newValue, oldValue) {
+      if (newValue && newValue !== oldValue) {
+        this.getEnigmes('?difficulty=' + this.difficulty + '&category=' + this.category);
+      }
     }
   },
   methods: {
+    async getEnigmes(query) {
+      const response = await this.$axios.get('enigmes' + query);
+      this.enigmes = response.data['hydra:member'];
+    },
     redirectionPageEnigme(enigmeId) {
       this.$router.push({
         name: 'enigme-solution-unique',

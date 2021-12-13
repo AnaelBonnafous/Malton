@@ -4,6 +4,7 @@
         v-for="category in categories"
         :key="category.id"
         class="bg-secondary text-white q-btn-category"
+        @click="emitFilter(category)"
     >
       {{ category.name }}
     </q-btn>
@@ -21,7 +22,9 @@ export default {
     this.categories = response.data["hydra:member"];
   },
   methods: {
-
+    emitFilter (category) {
+      this.$emit('filter', category['@id']);
+    },
   }
 };
 </script>
