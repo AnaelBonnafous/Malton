@@ -3,23 +3,23 @@
     <h1 class="text-h3">Bienvenue sur le site de résolution d'énigmes</h1>
     <h2 class="text-h4 text-left">Classement des meilleures énigmes</h2>
     <div class="bg-primary row justify-center q-mb-lg">
-      <div class="enigme" v-for="enigme in enigmes">
-        <q-img :src="'src/assets/images/enigmes/' + enigme.image_url" class="image-enigme">
-          <div class="absolute-full text-subtitle2 enigme-text text-left column text-body1">
-            <span>{{ enigme.name }}</span>
-            <span>{{ enigme.brief_description }}</span>
-            <span>{{ enigme.difficulty.difficulty }}</span>
-          </div>
-        </q-img>
-      </div>
+      <Enigme
+        v-for="enigme in enigmes"
+        :enigme="enigme"
+      />
     </div>
   </q-page>
 </template>
 
 <script>
+import Enigme from "@/components/Enigme.vue";
+
 export default {
+  components: {
+    Enigme
+  },
   data: () => ({
-    enigmes: null,
+    enigmes: [],
   }),
   async created () {
     const response = await this.$axios.get("enigmes_mieux_notees");
