@@ -23,35 +23,18 @@
             transition-next="slide-left"
             swipeable
             animated
-            control-color="primary"
+            infinite
             navigation
             padding
+            navigation-icon="fas fa-circle"
+            prev-icon="fas fa-arrow-left"
+            next-icon="fas fa-arrow-right"
+            control-color="white"
             arrows
             class="carousel-enigme-fav shadow-2 rounded-borders"
         >
-          <q-carousel-slide :name="1" class="column no-wrap">
-            <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
+          <q-carousel-slide v-for="(i, key) in 10" :name="i" :key="key" class="column no-wrap flex-center">
               <img src="src/assets/images/enigmes/contre_la_montre.jpg" />
-              <img src="src/assets/images/enigmes/contre_la_montre.jpg" />
-            </div>
-          </q-carousel-slide>
-          <q-carousel-slide :name="2" class="column no-wrap">
-            <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
-              <img src="src/assets/images/enigmes/contre_la_montre.jpg" />
-              <img src="src/assets/images/enigmes/contre_la_montre.jpg" />
-            </div>
-          </q-carousel-slide>
-          <q-carousel-slide :name="3" class="column no-wrap">
-            <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
-              <img src="src/assets/images/enigmes/contre_la_montre.jpg" />
-              <img src="src/assets/images/enigmes/contre_la_montre.jpg" />
-            </div>
-          </q-carousel-slide>
-          <q-carousel-slide :name="4" class="column no-wrap">
-            <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
-              <img src="src/assets/images/enigmes/contre_la_montre.jpg" />
-              <img src="src/assets/images/enigmes/contre_la_montre.jpg" />
-            </div>
           </q-carousel-slide>
         </q-carousel>
       </div>
@@ -104,6 +87,7 @@ import { ref } from 'vue';
 
 export default {
   data: () => ({
+    slide: 1,
     value: {
       easy: 30,
       intermediate: 50,
