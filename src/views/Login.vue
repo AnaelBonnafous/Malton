@@ -46,7 +46,6 @@
 
 <script>
 import { mapActions } from "vuex";
-import { Notify } from 'quasar'
 
 export default {
   data: () => ({
