@@ -113,8 +113,13 @@ export default {
       storeLogout: "userStore/logout",
     }),
     logout() {
+      const userName = this.user.username
       this.storeLogout();
       this.$router.push({ name: "accueil" });
+      this.$q.notify({
+        message: `Aurevoir ${userName} et à bientôt pour d'autres aventures !`,
+        color: "green",
+      });
     },
     toggleAudio() {
       const audio = document.getElementsByTagName("audio")[0];

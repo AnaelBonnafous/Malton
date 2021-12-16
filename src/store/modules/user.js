@@ -1,32 +1,39 @@
-import axios from 'axios'
+import axios from "axios";
 
 export default {
   namespaced: true,
   state: () => ({
     user: null,
     authenticated: false,
-    message: null,
-    userIri: null,
   }),
 
   actions: {
-    async login({ commit }, user) {
-      console.log(user)
-      try {
-        const response = await axios.post('login', user)
-        const userIri = response.data.substr(4);
-        commit('SET_USER_IRI', userIri);
-        const userConnected = await axios.get(response.data.substr(4));
-        commit("SET_USER", userConnected);
-        commit("SET_AUTHENTICATED", true);
-      } catch (err) {
-        console.log(err)
-        if (err.response.status === 401) {
-          commit('SET_MESSAGE', 'Erreur lors de la connexion : email ou mot de passe incorrect !');
-        }
+    login({ commit }, form) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post("login", form)
+          .then((response) => {
 
-        throw err
-      }
+            const userIri = response.data.replace("/api/", "");
+
+            axios
+              .get(userIri)
+              .then((response) => {
+
+                const user = response.data;
+                commit("SET_USER", user);
+                commit("SET_AUTHENTICATED", true);
+
+                resolve(response);
+              })
+              .catch((error) => {
+                reject(error);
+              });
+          })
+          .catch((error) => {
+            reject(error.response.data.error);
+          });
+      });
     },
 
     logout({ commit }) {
@@ -42,14 +49,6 @@ export default {
 
     SET_AUTHENTICATED(state, authenticated) {
       state.authenticated = authenticated;
-    },
-
-    SET_USER_IRI(state, userIri) {
-      state.userIri = userIri;
-    },
-
-    SET_MESSAGE(state, message) {
-      state.message = message;
     },
   },
 
