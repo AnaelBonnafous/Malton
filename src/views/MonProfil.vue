@@ -7,10 +7,9 @@
       </div>
       <div class="flex-text q-ml-lg">
         <div class="text-h5 text-white text-score"><span>Score total :</span> 850 picarats</div>
-        <span class="text-h5 text-white text-mail">{{ user.email }}</span>
+        <span class="text-h5 text-white text-mail">{{ user.data.username }}</span>
         <div class="text-profil text-h5 text-white">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Tincidunt egestas dignissim dictumst et tortor feugiat faucibus orci in.
+          {{ user.data.description }}
         </div>
       </div>
     </div>
@@ -31,10 +30,25 @@
             next-icon="fas fa-arrow-right"
             control-color="white"
             arrows
-            class="carousel-enigme-fav shadow-2 rounded-borders"
+            class="carousel-enigme-fav"
         >
-          <q-carousel-slide v-for="(i, key) in 10" :name="i" :key="key" class="column no-wrap flex-center">
-              <img src="src/assets/images/enigmes/contre_la_montre.jpg" />
+          <q-carousel-slide v-for="(enigme, index) in enigmesFavorites" :name="index" :key="enigme.name"
+                            class="row fit q-gutter-lg items-center no-wrap flex-center q-ma-none">
+            <div class="" style="width: 20%;">
+              <q-img :src="'src/assets/images/enigmes/' + enigme.image_url" class="image-enigme">
+                <div class="absolute-full text-subtitle2 enigme-text text-left column text-body1">
+                  <span class="q-mb-md block text-bold">Nom :
+                    <span class="text-weight-regular">{{ enigme.name }}</span>
+                  </span>
+                  <span class="q-mb-md block text-bold">Description :
+                    <span class="text-weight-regular" v-html="this.$decodeHtml(enigme.brief_description)"></span>
+                  </span>
+                  <span class="q-mb-md block text-bold">Difficulté :
+                    <span class="text-weight-regular">{{ enigme.difficulty.difficulty }}</span>
+                  </span>
+                </div>
+              </q-img>
+            </div>
           </q-carousel-slide>
         </q-carousel>
       </div>
@@ -82,12 +96,12 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import { ref } from 'vue';
+import {mapGetters} from "vuex";
 
 export default {
   data: () => ({
-    slide: 1,
+    slide: 0,
+    enigmesFavorites: [],
     value: {
       easy: 30,
       intermediate: 50,
@@ -96,6 +110,14 @@ export default {
   }),
   computed: {
     ...mapGetters("userStore", ["user"]),
+  },
+  async created() {
+    var response = null;
+
+    for (var i = 0; i < this.user.data.enigmeFavorites.length; i++) {
+      response = await this.$axios.get(this.user.data.enigmeFavorites[i].substr(5));
+      this.enigmesFavorites.push(response.data.enigme)
+    }
   },
 };
 </script>
@@ -115,7 +137,7 @@ export default {
 }
 
 .carousel-enigme-fav {
-  background-color: #2E2525;
+  background-color: #544d4d;
 }
 
 .block-flex-circular {
@@ -158,5 +180,9 @@ export default {
 
 .q-circular-progress {
   color: #A73808 !important;
+}
+
+.enigme {
+  overflow: hidden;
 }
 </style>
