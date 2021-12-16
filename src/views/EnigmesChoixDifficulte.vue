@@ -22,7 +22,7 @@ export default {
   }),
   async created() {
     const response = await this.$axios.get('difficultes');
-    this.difficulties = response.data;
+    this.difficulties = response.data['hydra:member'];
   },
 };
 </script>

@@ -24,7 +24,7 @@ export default {
   async created () {
     const response = await this.$axios.get("enigmes_mieux_notees");
     console.log(response)
-    this.enigmes = response.data
+    this.enigmes = response.data['hydra:member'];
   },
 };
 </script>

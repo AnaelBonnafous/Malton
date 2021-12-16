@@ -34,7 +34,7 @@ export default {
   methods: {
     async getEnigmes(query) {
       const response = await this.$axios.get('enigmes' + query);
-      this.enigmes = response.data;
+      this.enigmes = response.data['hydra:member'];
     },
   }
 };
