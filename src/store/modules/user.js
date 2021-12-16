@@ -46,12 +46,10 @@ export default {
 
     SET_USER_IRI(state, userIri) {
       state.userIri = userIri;
-      localStorage.setItem("userIri", JSON.stringify(state.userIri));
     },
 
     SET_MESSAGE(state, message) {
       state.message = message;
-      localStorage.setItem("message", JSON.stringify(state.message));
     },
   },
 
