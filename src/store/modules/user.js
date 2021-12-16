@@ -1,15 +1,32 @@
+import axios from 'axios'
+
 export default {
   namespaced: true,
   state: () => ({
     user: JSON.parse(localStorage.getItem("user")),
     authenticated: JSON.parse(localStorage.getItem("authenticated")),
+    message: null,
+    userIri: null,
   }),
 
   actions: {
-    login({ commit }, user) {
-      delete user.password;
-      commit("SET_USER", user);
-      commit("SET_AUTHENTICATED", true);
+    async login({ commit }, user) {
+      console.log(user)
+      try {
+        const response = await axios.post('login', user)
+        const userIri = response.data.substr(4);
+        commit('SET_USER_IRI', userIri);
+        const userConnected = await axios.get(response.data.substr(4));
+        commit("SET_USER", userConnected);
+        commit("SET_AUTHENTICATED", true);
+      } catch (err) {
+        console.log(err)
+        if (err.response.status === 401) {
+          commit('SET_MESSAGE', 'Erreur lors de la connexion : email ou mot de passe incorrect !');
+        }
+
+        throw err
+      }
     },
 
     logout({ commit }) {
@@ -27,6 +44,16 @@ export default {
     SET_AUTHENTICATED(state, authenticated) {
       state.authenticated = authenticated;
       localStorage.setItem("authenticated", JSON.stringify(state.authenticated));
+    },
+
+    SET_USER_IRI(state, userIri) {
+      state.userIri = userIri;
+      localStorage.setItem("userIri", JSON.stringify(state.userIri));
+    },
+
+    SET_MESSAGE(state, message) {
+      state.message = message;
+      localStorage.setItem("message", JSON.stringify(state.message));
     },
   },
 

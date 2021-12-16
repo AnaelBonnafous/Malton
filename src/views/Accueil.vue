@@ -23,7 +23,8 @@ export default {
   }),
   async created () {
     const response = await this.$axios.get("enigmes_mieux_notees");
-    this.enigmes = response.data['hydra:member']
+    console.log(response)
+    this.enigmes = response.data
   },
 };
 </script>
