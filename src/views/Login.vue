@@ -30,6 +30,10 @@
         </template>
       </q-input>
 
+      <div v-if="message" class="text-white">
+        {{ message }}
+      </div>
+
       <q-btn type="submit" color="primary">Connexion</q-btn>
 
       <div class="column">
@@ -41,7 +45,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   data: () => ({
@@ -51,13 +55,18 @@ export default {
     },
     password_visible: false,
   }),
+  computed: {
+    ...mapState('user', [
+      'message'
+    ])
+  },
   methods: {
     ...mapActions({
       storeLogin: "userStore/login",
     }),
-    login() {
-      this.storeLogin(this.form);
-      this.$router.push({ name: "profil" });
+    async login() {
+      await this.storeLogin(this.form);
+      await this.$router.push({ name: "profil" });
     },
     togglePasswordVisibility() {
       this.password_visible = !this.password_visible;

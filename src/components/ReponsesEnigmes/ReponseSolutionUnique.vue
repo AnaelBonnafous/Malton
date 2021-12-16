@@ -37,7 +37,7 @@ export default {
       }
       
       const response = await this.$axios.get('check_reponses_enigmes/' + this.enigmeId + '/unique/' + this.answer);
-      const data = response.data['hydra:member'][0];
+      const data = response.data[0];
 
       if(data['message_response_is_incorrect']) {
         this.$emit('incorrect', data['message_response_is_incorrect']);

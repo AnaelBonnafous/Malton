@@ -26,7 +26,7 @@ export default {
   }),
   async created() {
     const response = await this.$axios.get("enigme_favorites?user=api/users/1");
-    this.enigmesFavorites = response.data["hydra:member"];
+    this.enigmesFavorites = response.data;
 
   },
   methods: {
