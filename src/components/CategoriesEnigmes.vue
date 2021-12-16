@@ -25,7 +25,7 @@ export default {
   }),
   async created() {
     const response = await this.$axios.get("categories");
-    this.categories = response.data;
+    this.categories = response.data['hydra:member'];;
   },
   methods: {
     emitFilter(category) {
