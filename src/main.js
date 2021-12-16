@@ -3,11 +3,13 @@ import App from "./App.vue";
 const app = createApp(App);
 
 // Quasar
-import { Quasar } from "quasar";
+import { Quasar, Notify } from "quasar";
 import "@quasar/extras/fontawesome-v5/fontawesome-v5.css";
 import "quasar/src/css/index.sass";
 app.use(Quasar, {
-  plugins: {},
+  plugins: {
+    Notify,
+  },
 });
 
 // Axios
