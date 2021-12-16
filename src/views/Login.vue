@@ -53,7 +53,7 @@ export default {
   }),
   methods: {
     ...mapActions({
-      storeLogin: "user/login",
+      storeLogin: "userStore/login",
     }),
     login() {
       this.storeLogin(this.form);

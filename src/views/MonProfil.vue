@@ -95,7 +95,7 @@ export default {
     },
   }),
   computed: {
-    ...mapGetters("user", ["user"]),
+    ...mapGetters("userStore", ["user"]),
   },
 };
 </script>

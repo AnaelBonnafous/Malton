@@ -24,7 +24,7 @@
           {{ item.text }}
         </q-btn>
         <template v-if="authenticated">
-          <q-btn icon="fas fa-user-circle" label="Mon compte" flat>
+          <q-btn icon="fas fa-user-circle" :label="user.email" flat>
             <q-menu class="no-border-radius">
               <q-list style="min-width: 150px">
                 <q-item clickable v-ripple to="profil">
@@ -106,11 +106,11 @@ export default {
     audio_playing: false,
   }),
   computed: {
-    ...mapGetters("user", ["user", "authenticated"]),
+    ...mapGetters("userStore", ["user", "authenticated"]),
   },
   methods: {
     ...mapActions({
-      storeLogout: "user/logout",
+      storeLogout: "userStore/logout",
     }),
     logout() {
       this.storeLogout();
