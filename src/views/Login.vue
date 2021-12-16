@@ -62,7 +62,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      storeLogin: "user/login",
+      storeLogin: "userStore/login",
     }),
     async login() {
       await this.storeLogin(this.form);

@@ -3,8 +3,8 @@ import axios from 'axios'
 export default {
   namespaced: true,
   state: () => ({
-    user: JSON.parse(localStorage.getItem("user")),
-    authenticated: JSON.parse(localStorage.getItem("authenticated")),
+    user: null,
+    authenticated: false,
     message: null,
     userIri: null,
   }),
@@ -38,12 +38,10 @@ export default {
   mutations: {
     SET_USER(state, user) {
       state.user = user;
-      localStorage.setItem("user", JSON.stringify(state.user));
     },
 
     SET_AUTHENTICATED(state, authenticated) {
       state.authenticated = authenticated;
-      localStorage.setItem("authenticated", JSON.stringify(state.authenticated));
     },
 
     SET_USER_IRI(state, userIri) {
