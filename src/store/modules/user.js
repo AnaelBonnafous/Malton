@@ -13,13 +13,11 @@ export default {
         axios
           .post("login", form)
           .then((response) => {
-
             const userIri = response.data.replace("/api/", "");
 
             axios
               .get(userIri)
               .then((response) => {
-
                 const user = response.data;
                 commit("SET_USER", user);
                 commit("SET_AUTHENTICATED", true);
@@ -32,6 +30,38 @@ export default {
           })
           .catch((error) => {
             reject(error.response.data.error);
+          });
+      });
+    },
+
+    register({ commit }, form) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post("users", form)
+          .then((response) => {
+            console.log("response");
+            console.log(response);
+
+            // const userIri = response.data.replace("/api/", "");
+
+            // axios
+            //   .get(userIri)
+            //   .then((response) => {
+            //     const user = response.data;
+            //     commit("SET_USER", user);
+            //     commit("SET_AUTHENTICATED", true);
+
+            //     resolve(response);
+            //   })
+            //   .catch((error) => {
+            //     reject(error);
+            //   });
+          })
+          .catch((error) => {
+            console.log("error");
+            console.log(error);
+            
+            // reject(error.response.data.error);
           });
       });
     },
