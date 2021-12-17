@@ -47,7 +47,6 @@
 
 <script>
 import { mapGetters } from "vuex";
-import enigme from "../store/modules/enigme";
 
 export default {
   props: ["indices", "enigme"],
@@ -64,7 +63,7 @@ export default {
 
     if (enigmeFavorite.data['hydra:totalItems'] !== 0) {
       this.isEnigmeFavorite = true;
-      this.infoEnigmeFavorite = { ...enigmeFavorite };
+      this.infoEnigmeFavorite = { ...enigmeFavorite.data['hydra:member'][0] };
     } else {
       this.isEnigmeFavorite = false;
     }
@@ -104,22 +103,24 @@ export default {
       }
 
       if (this.isEnigmeFavorite) {
+        console.log(this.infoEnigmeFavorite)
         this.isEnigmeFavorite = !this.isEnigmeFavorite;
         this.$q.notify({
           message: `Énigme retirée des favoris !`,
           color: "red",
         });
-        await this.$axios.delete("enigme_favorites/"+this.infoEnigmeFavorite.data['hydra:member'][0]['id']);
+        await this.$axios.delete("enigme_favorites/"+this.infoEnigmeFavorite['id']);
       } else {
         this.isEnigmeFavorite = !this.isEnigmeFavorite;
         this.$q.notify({
           message: `Énigme ajoutée en favori !`,
           color: "green",
         });
-        this.infoEnigmeFavorite = await this.$axios.post("enigme_favorites", {
+        const enigmeFavorite = await this.$axios.post("enigme_favorites", {
           'user': this.user['@id'],
           'enigme': this.enigme['@id']
         });
+        this.infoEnigmeFavorite = { ...enigmeFavorite.data };
       }
     }
   },
