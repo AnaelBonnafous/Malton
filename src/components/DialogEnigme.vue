@@ -6,6 +6,9 @@
       </q-card-section>
 
       <q-card-section  v-if="image" class="q-py-none q-px-none">
+        <video autoplay v-on:ended="deleteVideo">
+          <source src="src/assets/videos/success.mp4" type="video/mp4" auto>
+        </video>
         <q-img :src="'src/assets/images/enigmes/' + image"/>
       </q-card-section>
 
@@ -64,6 +67,9 @@ export default {
     redirectionTo() {
       this.$router.push(this.redirection);
     },
+    deleteVideo(e){
+      e.target.parentNode.removeChild(e.target)
+    }
   },
 };
 </script>
