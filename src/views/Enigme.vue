@@ -49,6 +49,7 @@ import FabEnigme from "../components/FabEnigme.vue";
 import DialogEnigme from "@/components/DialogEnigme.vue";
 import ReponseSolutionAChoixes from "@/components/ReponsesEnigmes/ReponseSolutionAChoixes.vue";
 import ReponseSolutionMultiples from "@/components/ReponsesEnigmes/ReponseSolutionMultiples.vue";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -87,6 +88,9 @@ export default {
       this.loading = false;
     }
   },
+  computed: {
+    ...mapGetters("userStore", ["user"]),
+  },
   methods: {
     answerIsNotCorrect(message_response_is_incorrect) {
       this.title = "Réponse fausse... !";
@@ -95,7 +99,7 @@ export default {
       this.redirection = null;
       this.dialog = true;
     },
-    answerIsCorrect(message_response_is_correct, image_response_is_correct) {
+    async answerIsCorrect(message_response_is_correct, image_response_is_correct) {
       this.title = "Bien joué !";
       this.message = message_response_is_correct;
       this.imageCorrectResponse = image_response_is_correct;
@@ -107,6 +111,13 @@ export default {
         },
       };
       this.dialog = true;
+      const enigmeResolue = await this.$axios.get('enigme_resolues?and[enigme]='+this.enigme['@id']+'&and[user]='+this.user['@id'])
+      if (enigmeResolue.data['hydra:totalItems'] === 0) {
+        await this.$axios.post('enigme_resolues', {
+          'enigme': this.enigme['@id'],
+          'user': this.user['@id'],
+        })
+      }
     },
     close() {
       this.dialog = false;

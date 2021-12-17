@@ -6,7 +6,7 @@
       </q-card-section>
 
       <q-card-section  v-if="image" class="q-py-none q-px-none">
-        <img :src="'src/assets/images/enigmes/' + image">
+        <q-img :src="'src/assets/images/enigmes/' + image"/>
       </q-card-section>
 
       <q-card-section class="q-pt-none q-pt-md">
