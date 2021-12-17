@@ -1,4 +1,7 @@
 <template>
+
+  <FabIndices v-if="indices.length" :indices="indices" />
+
   <IntituleEtEnonceEnigme :enigme="enigme" />
 
   <template v-if="enigme.solutionUniques.length">
@@ -40,6 +43,7 @@
 <script>
 import IntituleEtEnonceEnigme from "@/components/IntituleEtEnonceEnigme.vue";
 import ReponseSolutionUnique from "@/components/ReponsesEnigmes/ReponseSolutionUnique.vue";
+import FabIndices from "../components/FabIndices.vue";
 import DialogEnigme from "@/components/DialogEnigme.vue";
 import ReponseSolutionAChoixes from "@/components/ReponsesEnigmes/ReponseSolutionAChoixes.vue";
 import ReponseSolutionMultiples from "@/components/ReponsesEnigmes/ReponseSolutionMultiples.vue";
@@ -48,6 +52,7 @@ export default {
   components: {
     IntituleEtEnonceEnigme,
     ReponseSolutionUnique,
+    FabIndices,
     DialogEnigme,
     ReponseSolutionAChoixes,
     ReponseSolutionMultiples,
@@ -56,6 +61,7 @@ export default {
     dialog: false,
     enigmeId: null,
     enigme: null,
+    indices: [],
     title: "",
     message: "",
     imageCorrectResponse: null,
@@ -68,6 +74,12 @@ export default {
     } else {
       const response = await this.$axios.get("enigmes/" + this.enigmeId);
       this.enigme = response.data;
+      
+      this.indices = [
+        this.enigme.indice1,
+        this.enigme.indice2,
+        this.enigme.indice3,
+      ];
     }
   },
   methods: {
