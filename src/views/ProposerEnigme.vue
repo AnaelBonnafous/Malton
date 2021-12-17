@@ -48,6 +48,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   data: () => ({
     text: "",
@@ -56,11 +58,14 @@ export default {
       statement: "",
       solution: "",
       comment: "",
-      user: "/api/users/1",
     },
   }),
+  computed: {
+    ...mapGetters("userStore", ["user"]),
+  },
   methods: {
     async envoyerProposition() {
+      this.form.user = this.user['@id'];
       await this.$axios.post("demandes", this.form);
     },
   },
