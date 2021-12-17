@@ -10,55 +10,16 @@
             <img src="@/assets/images/profil/layton.png" />
           </q-avatar>
           <div class="q-mt-md text-h5 text-white">
-            <div>Porte-monnaie : 850 picarats</div>
             <div>Email : {{ user.username }}</div>
             <div>
               <span v-if="user.description">{{ user.description }}</span>
-              <span v-else>Aucune descrption...</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-8 text-center">
-          <h2 class="text-h3">Mon score</h2>
-          <div class="row justify-center text-white">
-            <div class="col-12 col-sm-6 col-md-4">
-              <q-circular-progress
-                show-value
-                :value="value.easy"
-                color="green"
-                size="200px"
-              >
-                {{ value.easy }} %
-              </q-circular-progress>
-              <h3 class="text-h5">Facile</h3>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4">
-              <q-circular-progress
-                show-value
-                :value="value.intermediate"
-                color="orange"
-                size="200px"
-              >
-                {{ value.intermediate }} %
-              </q-circular-progress>
-              <h3 class="text-h5">Intermédiaire</h3>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4">
-              <q-circular-progress
-                show-value
-                :value="value.hard"
-                color="red"
-                size="200px"
-              >
-                {{ value.hard }} %
-              </q-circular-progress>
-              <h3 class="text-h5">Difficile</h3>
+              <span v-else>Aucune description...</span>
             </div>
           </div>
         </div>
       </div>
       <div class="row bg-primary rounded-borders q-pa-lg">
-        <div class="col-12 col-md-6 text-center">
+        <div class="col-12 text-center">
           <h2 class="text-h3">Mes énigmes favorites</h2>
           <div v-if="enigmesFavorites.length">
             <q-carousel
@@ -103,31 +64,6 @@
             </q-carousel>
           </div>
         </div>
-        <div class="col-12 col-md-6 text-center">
-          <h2 class="text-h3">Mes propres énigmes</h2>
-          <div class="row justify-center">
-            <div class="col-6">
-              <p class="text-white">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
-                esse, deserunt itaque eaque molestias fuga quidem. Laudantium
-                iure deleniti vero, dolorum corporis, voluptatem magni repellat
-                dolore, recusandae a assumenda sint?
-              </p>
-              <p class="text-white">
-                Necessitatibus, architecto id libero explicabo commodi vitae
-                delectus asperiores quasi repellendus et assumenda provident
-                atque dolor expedita suscipit? A iste qui neque voluptatem
-                laborum maiores harum facere magni beatae modi.
-              </p>
-              <p class="text-white">
-                Porro esse sapiente praesentium mollitia omnis sequi adipisci,
-                id, laudantium fugit rerum a culpa labore nesciunt, tempora
-                inventore nobis laborum repellat explicabo? Incidunt rerum optio
-                reprehenderit, inventore itaque dolorem architecto?
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </q-page>
@@ -140,11 +76,6 @@ export default {
   data: () => ({
     slide: 0,
     enigmesFavorites: [],
-    value: {
-      easy: 81,
-      intermediate: 42,
-      hard: 17,
-    },
   }),
   computed: {
     ...mapGetters("userStore", ["user"]),
