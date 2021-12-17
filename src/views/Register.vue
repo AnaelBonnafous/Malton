@@ -94,7 +94,20 @@ export default {
       storeRegister: "userStore/register",
     }),
     register() {
-      this.storeRegister(this.form);
+      this.storeRegister(this.form)
+        .then((response) => {
+          this.$router.push({ name: "profil" });
+          this.$q.notify({
+            message: `Bonjour ${response.data.username}, soyez le bienvenue parmis nous !`,
+            color: "green",
+          });
+        })
+        .catch((errors) => {
+          this.$q.notify({
+            message: "Erreur lors de l'inscription : réassayez plus tard !",
+            color: "red",
+          });
+        });
     },
     togglePasswordVisibility() {
       this.password_visible = !this.password_visible;
