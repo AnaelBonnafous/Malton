@@ -7,6 +7,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@grafikri/vue-middleware": "^1.0.0",
     "@quasar/extras": "^1.12.2",
     "axios": "^0.24.0",
     "quasar": "^2.3.4",

@@ -9,6 +9,8 @@ import MonProfil from "@/views/MonProfil.vue";
 import EnigmeSolutionUnique from "@/views/Enigme.vue";
 import ListeEnigmesFavorite from "@/views/ListeEnigmesFavorite.vue";
 
+import auth from "@/middleware/auth.js";
+
 const routes = [
   {
     path: "/",
@@ -19,6 +21,9 @@ const routes = [
     path: "/enigmes",
     name: "enigmes",
     component: ListeEnigmesParDifficulte,
+    meta: {
+      middleware: [auth],
+    },
   },
   {
     path: "/login",
@@ -31,29 +36,44 @@ const routes = [
     component: Register,
   },
   {
-    path: '/difficultes',
-    name: 'difficultes',
-    component: EnigmesChoixDifficulte
+    path: "/difficultes",
+    name: "difficultes",
+    component: EnigmesChoixDifficulte,
+    meta: {
+      middleware: [auth],
+    },
   },
   {
-    path: '/proposer',
-    name: 'proposer',
-    component: ProposerEnigme
+    path: "/proposer",
+    name: "proposer",
+    component: ProposerEnigme,
+    meta: {
+      middleware: [auth],
+    },
   },
   {
-    path: '/profil',
-    name: 'profil',
-    component: MonProfil
+    path: "/profil",
+    name: "profil",
+    component: MonProfil,
+    meta: {
+      middleware: [auth],
+    },
   },
   {
-    path: '/enigme',
-    name: 'enigme-solution-unique',
+    path: "/enigme",
+    name: "enigme-solution-unique",
     component: EnigmeSolutionUnique,
+    meta: {
+      middleware: [auth],
+    },
   },
   {
-    path: '/favorites',
-    name: 'my_puzzles',
+    path: "/favorites",
+    name: "my_puzzles",
     component: ListeEnigmesFavorite,
+    meta: {
+      middleware: [auth],
+    },
   },
 ];
 
