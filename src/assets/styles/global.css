@@ -58,6 +58,8 @@ img{
     position: relative;
     margin: 15px 15px;
     cursor: pointer;
+    border-radius: 7%;
+    overflow: hidden;
 }
 
 .image-enigme {
@@ -82,4 +84,34 @@ img{
     width:200px;
     max-width: 100%;
     margin:20px auto 0 auto;
+}
+
+.icon-layton {
+    position: absolute;
+    top:5px;
+    right:5px;
+    width:50px;
+    max-width:25%;
+    background-color: transparent !important;
+}
+
+.title-enigme {
+    width: 100%;
+    position: absolute;
+    bottom:0;
+    font-weight: bold;
+    font-size:1.2rem;
+}
+
+.banniere {
+    height: 100%;
+    max-height:250px;
+}
+
+@media screen and (min-width:800px){
+    #bloc-profil {
+        background-image: url('@/assets/images/profil/layton_background.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
 }

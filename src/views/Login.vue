@@ -2,6 +2,7 @@
   <q-page class="text-center">
     <form @submit.prevent="login()" class="q-py-lg q-mx-auto q-gutter-lg">
       <h1 class="text-h3">Connexion au site d'énigmes</h1>
+      <q-img class="banniere" src="src/assets/images/banniere_layton.jpg" fit="contain"/>
       <q-input
         v-model="form.email"
         type="email"

@@ -2,15 +2,16 @@
   <q-page>
     <div class="q-my-xl">
       <div
-        class="row justify-center bg-secondary rounded-borders q-ma-lg q-pa-lg"
+        class="row justify-center rounded-borders q-ma-lg q-pa-lg"
+        id="bloc-profil"
       >
         <div class="col-12 col-md-4 text-center">
           <h2 class="text-h3">Mon profil</h2>
           <q-avatar size="200px" color="primary">
-            <img src="@/assets/images/profil/layton.png" />
+            <q-img src="@/assets/images/profil/layton.png" />
           </q-avatar>
           <div class="q-mt-md text-h5 text-white">
-            <div>Email : {{ user.username }}</div>
+            <div>Email : {{ user.email }}</div>
             <div>
               <span v-if="user.description">{{ user.description }}</span>
               <span v-else>Aucune description...</span>
