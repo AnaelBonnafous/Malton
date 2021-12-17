@@ -34,34 +34,15 @@ export default {
       });
     },
 
-    register({ commit }, form) {
+    register({ dispatch }, form) {
       return new Promise((resolve, reject) => {
         axios
           .post("users", form)
           .then((response) => {
-            console.log("response");
-            console.log(response);
-
-            // const userIri = response.data.replace("/api/", "");
-
-            // axios
-            //   .get(userIri)
-            //   .then((response) => {
-            //     const user = response.data;
-            //     commit("SET_USER", user);
-            //     commit("SET_AUTHENTICATED", true);
-
-            //     resolve(response);
-            //   })
-            //   .catch((error) => {
-            //     reject(error);
-            //   });
+            resolve(dispatch("login", form));
           })
           .catch((error) => {
-            console.log("error");
-            console.log(error);
-            
-            // reject(error.response.data.error);
+            reject(error.response.data.error);
           });
       });
     },
