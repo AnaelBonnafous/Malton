@@ -115,3 +115,7 @@ img{
         background-size: contain;
     }
 }
+
+video {
+    max-width: 100%;
+}
