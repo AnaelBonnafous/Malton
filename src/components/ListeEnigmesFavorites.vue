@@ -19,15 +19,19 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: 'ListeEnigmesFavorites',
   data: () => ({
     enigmesFavorites: [],
   }),
   async created() {
-    const response = await this.$axios.get("enigme_favorites?user=api/users/1");
+    const response = await this.$axios.get("enigme_favorites?user=api/users/"+this.user['@id']);
     this.enigmesFavorites = response.data;
-
+  },
+  computed: {
+    ...mapGetters("userStore", ["user"]),
   },
   methods: {
     redirectionPageEnigme(enigmeId) {

@@ -1,6 +1,13 @@
 <template>
   <q-page-sticky position="top-right" :offset="[18, 18]">
     <q-fab
+      icon="fas fa-heart"
+      active-icon="fas fa-heart"
+      class="q-mr-md"
+      :color="isEnigmeFavorite === true ? 'secondary' : 'primary'"
+      @click="toggleEnigmeFavorite()"
+    />
+    <q-fab
       icon="fas fa-question"
       active-icon="fas fa-times"
       color="secondary"
@@ -28,7 +35,7 @@
       </q-card-section>
 
       <q-card-section class="q-pt-none">
-        {{ selectedIndice }}
+        <p v-html="this.$decodeHtml(selectedIndice)"></p>
       </q-card-section>
 
       <q-card-actions align="right">
@@ -39,21 +46,38 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import enigme from "../store/modules/enigme";
+
 export default {
-  props: ["indices"],
+  props: ["indices", "enigme"],
   data: () => ({
     lastIndex: 0,
     dialog: false,
     selectedIndice: null,
     indicesData: [],
+    isEnigmeFavorite: false,
+    infoEnigmeFavorite: {},
   }),
-  created() {
+  async created() {
+    const enigmeFavorite = await this.$axios.get('enigme_favorites?and[enigme]='+this.enigme['@id']+'&and[user]='+this.user['@id']);
+
+    if (enigmeFavorite.data['hydra:totalItems'] !== 0) {
+      this.isEnigmeFavorite = true;
+      this.infoEnigmeFavorite = { ...enigmeFavorite };
+    } else {
+      this.isEnigmeFavorite = false;
+    }
+
     this.indicesData = this.indices.map((indice) => {
       return {
         text: indice,
         unlocked: false,
       };
     });
+  },
+  computed: {
+    ...mapGetters("userStore", ["user"]),
   },
   methods: {
     selectIndice(index) {
@@ -74,6 +98,30 @@ export default {
       this.selectedIndice = this.indicesData[index].text;
       this.dialog = true;
     },
+    async toggleEnigmeFavorite() {
+      if (this.infoEnigmeFavorite === null){
+        return;
+      }
+
+      if (this.isEnigmeFavorite) {
+        this.isEnigmeFavorite = !this.isEnigmeFavorite;
+        this.$q.notify({
+          message: `Énigme retirée des favoris !`,
+          color: "red",
+        });
+        await this.$axios.delete("enigme_favorites/"+this.infoEnigmeFavorite.data['hydra:member'][0]['id']);
+      } else {
+        this.isEnigmeFavorite = !this.isEnigmeFavorite;
+        this.$q.notify({
+          message: `Énigme ajoutée en favori !`,
+          color: "green",
+        });
+        this.infoEnigmeFavorite = await this.$axios.post("enigme_favorites", {
+          'user': this.user['@id'],
+          'enigme': this.enigme['@id']
+        });
+      }
+    }
   },
 };
 </script>
