@@ -3,26 +3,28 @@
     <h1 class="text-h3">Bienvenue sur le site de résolution d'énigmes</h1>
     <h2 class="text-h4 text-left">Classement des meilleures énigmes</h2>
     <div class="bg-primary row justify-center q-mb-lg">
-      <div class="enigme">
-        <q-img src="src/assets/images/enigmes/contre_la_montre.jpg" class="image-enigme">
-          <div class="absolute-full text-subtitle2 enigme-text text-left column text-body1">
-            <span> Nom : Test</span>
-            <span>Description : Une description</span>
-            <span>Difficulté : Facile</span>
-          </div>
-        </q-img>
-      </div>
-      <div class="enigme">
-        <q-img src="src/assets/images/enigmes/contre_la_montre.jpg" class="image-enigme">
-          <div class="absolute-full text-subtitle2 enigme-text text-left column text-body1">
-            <span> Nom : Test</span>
-            <span>Description : Une description</span>
-            <span>Difficulté : Facile</span>
-          </div>
-        </q-img>
-      </div>
+      <Enigme
+        v-for="enigme in enigmes"
+        :enigme="enigme"
+      />
     </div>
   </q-page>
 </template>
-<style scoped>
-</style>
+
+<script>
+import Enigme from "@/components/Enigme.vue";
+
+export default {
+  components: {
+    Enigme
+  },
+  data: () => ({
+    enigmes: [],
+  }),
+  async created () {
+    const response = await this.$axios.get("enigmes_mieux_notees");
+    console.log(response)
+    this.enigmes = response.data['hydra:member'];
+  },
+};
+</script>

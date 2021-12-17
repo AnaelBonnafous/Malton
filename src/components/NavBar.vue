@@ -24,7 +24,7 @@
           {{ item.text }}
         </q-btn>
         <template v-if="authenticated">
-          <q-btn icon="fas fa-user-circle" label="Mon compte" flat>
+          <q-btn icon="fas fa-user-circle" :label="user.email" flat>
             <q-menu class="no-border-radius">
               <q-list style="min-width: 150px">
                 <q-item clickable v-ripple to="profil">
@@ -57,7 +57,7 @@
           </q-btn>
         </template>
         <template v-else>
-          <q-btn :to="{ name: 'login' }" flat class="bg-primary">
+          <q-btn :to="{ name: 'login' }" flat class="bg-primary q-ml-sm">
             <q-icon name="fas fa-sign-in-alt" class="q-mr-sm" />
             Connexion
           </q-btn>
@@ -106,15 +106,19 @@ export default {
     audio_playing: false,
   }),
   computed: {
-    ...mapGetters("user", ["user", "authenticated"]),
+    ...mapGetters("userStore", ["user", "authenticated"]),
   },
   methods: {
     ...mapActions({
-      storeLogout: "user/logout",
+      storeLogout: "userStore/logout",
     }),
     logout() {
-      this.storeLogout();
       this.$router.push({ name: "accueil" });
+      this.$q.notify({
+        message: `Aurevoir ${this.user.username} et à bientôt pour d'autres aventures !`,
+        color: "green",
+      });
+      this.storeLogout();
     },
     toggleAudio() {
       const audio = document.getElementsByTagName("audio")[0];

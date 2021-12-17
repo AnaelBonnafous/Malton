@@ -7,25 +7,27 @@
         type="email"
         placeholder="professeur.layton@mail.com"
         outlined
-        label-slot>
+        label-slot
+      >
         <template v-slot:label>
           <span class="text-weight-bold">Adresse email</span>
         </template>
       </q-input>
       <q-input
-          v-model="form.password"
-          :type="password_visible ? 'text' : 'password'"
-          placeholder="******"
-          outlined
-          label-slot>
+        v-model="form.password"
+        :type="password_visible ? 'text' : 'password'"
+        placeholder="******"
+        outlined
+        label-slot
+      >
         <template v-slot:label>
           <span class="text-weight-bold">Mot de passe</span>
         </template>
         <template #append>
           <q-icon
-              @click="togglePasswordVisibility()"
-              :name="password_visible ? 'fas fa-eye' : 'fas fa-eye-slash'"
-              class="cursor-pointer"
+            @click="togglePasswordVisibility()"
+            :name="password_visible ? 'fas fa-eye' : 'fas fa-eye-slash'"
+            class="cursor-pointer"
           />
         </template>
       </q-input>
@@ -34,7 +36,9 @@
 
       <div class="column">
         <span class="text-white">Pas de compte ? </span>
-          <router-link :to="{ name: 'register' }" class="text-bold text-wheat">Créer mon compte</router-link>
+        <router-link :to="{ name: 'register' }" class="text-bold text-wheat"
+          >Créer mon compte</router-link
+        >
       </div>
     </form>
   </q-page>
@@ -53,11 +57,23 @@ export default {
   }),
   methods: {
     ...mapActions({
-      storeLogin: "user/login",
+      storeLogin: "userStore/login",
     }),
     login() {
-      this.storeLogin(this.form);
-      this.$router.push({ name: "profil" });
+      this.storeLogin(this.form)
+        .then((response) => {
+          this.$router.push({ name: "profil" });
+          this.$q.notify({
+            message: `Bienvenue ${response.data.username}, bon retour parmis nous !`,
+            color: "green",
+          });
+        })
+        .catch((errors) => {
+          this.$q.notify({
+            message: "Erreur lors de la connexion : email ou mot de passe incorrect !",
+            color: "red",
+          });
+        });
     },
     togglePasswordVisibility() {
       this.password_visible = !this.password_visible;

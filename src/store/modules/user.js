@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export default {
   namespaced: true,
   state: () => ({
@@ -6,9 +8,43 @@ export default {
   }),
 
   actions: {
-    login({ commit }, user) {
-      commit("SET_USER", user);
-      commit("SET_AUTHENTICATED", true);
+    login({ commit }, form) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post("login", form)
+          .then((response) => {
+            const userIri = response.data.replace("/api/", "");
+
+            axios
+              .get(userIri)
+              .then((response) => {
+                const user = response.data;
+                commit("SET_USER", user);
+                commit("SET_AUTHENTICATED", true);
+
+                resolve(response);
+              })
+              .catch((error) => {
+                reject(error);
+              });
+          })
+          .catch((error) => {
+            reject(error.response.data.error);
+          });
+      });
+    },
+
+    register({ dispatch }, form) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post("users", form)
+          .then((response) => {
+            resolve(dispatch("login", form));
+          })
+          .catch((error) => {
+            reject(error.response.data.error);
+          });
+      });
     },
 
     logout({ commit }) {

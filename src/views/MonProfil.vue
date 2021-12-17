@@ -1,56 +1,135 @@
 <template>
-  <q-page class="text-center">
-    <h1 class="text-h3 title-profil">Mon profil</h1>
-    <div class="block-flex-profil">
-      <div class="flex-img">
-        <img src="src/assets/images/profil/layton.png" class="image-profil">
+  <q-page>
+    <div class="q-my-xl">
+      <div
+        class="row justify-center bg-secondary rounded-borders q-ma-lg q-pa-lg"
+      >
+        <div class="col-12 col-md-4 text-center">
+          <h2 class="text-h3">Mon profil</h2>
+          <q-avatar size="200px" color="primary">
+            <img src="@/assets/images/profil/layton.png" />
+          </q-avatar>
+          <div class="q-mt-md text-h5 text-white">
+            <div>Porte-monnaie : 850 picarats</div>
+            <div>Email : {{ user.username }}</div>
+            <div>
+              <span v-if="user.description">{{ user.description }}</span>
+              <span v-else>Aucune descrption...</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-8 text-center">
+          <h2 class="text-h3">Mon score</h2>
+          <div class="row justify-center text-white">
+            <div class="col-12 col-sm-6 col-md-4">
+              <q-circular-progress
+                show-value
+                :value="value.easy"
+                color="green"
+                size="200px"
+              >
+                {{ value.easy }} %
+              </q-circular-progress>
+              <h3 class="text-h5">Facile</h3>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4">
+              <q-circular-progress
+                show-value
+                :value="value.intermediate"
+                color="orange"
+                size="200px"
+              >
+                {{ value.intermediate }} %
+              </q-circular-progress>
+              <h3 class="text-h5">Intermédiaire</h3>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4">
+              <q-circular-progress
+                show-value
+                :value="value.hard"
+                color="red"
+                size="200px"
+              >
+                {{ value.hard }} %
+              </q-circular-progress>
+              <h3 class="text-h5">Difficile</h3>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="flex-text">
-        <div class="text-h5 text-white text-score"><span>Score total :</span> 850 picarats</div>
-        <span class="text-h5 text-white text-mail">{{ user.email }}</span>
-        <div class="text-profil text-h5 text-white">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Tincidunt egestas dignissim dictumst et tortor feugiat faucibus orci in.
+      <div class="row bg-primary rounded-borders q-pa-lg">
+        <div class="col-12 col-md-6 text-center">
+          <h2 class="text-h3">Mes énigmes favorites</h2>
+          <div v-if="enigmesFavorites.length">
+            <q-carousel
+              v-model="slide"
+              thumbnails
+              swipeable
+              infinite
+              animated
+              transition-prev="slide-right"
+              transition-next="slide-left"
+              class="bg-primary"
+            >
+              <q-carousel-slide
+                :img-src="`src/assets/images/enigmes/${enigme.image_url}`"
+                v-for="(enigme, index) in enigmesFavorites"
+                :name="index"
+                :key="index"
+                class="cursor-pointer"
+                @click="playEnigme(enigme.id)"
+              >
+                <q-tooltip
+                  class="bg-secondary rounded-borders"
+                  anchor="center end"
+                  self="center start"
+                  :delay="500"
+                >
+                  <q-card class="text-center text-black">
+                    <img
+                      :src="`src/assets/images/enigmes/${enigme.image_url}`"
+                    />
+                    <q-card-section>
+                      <div class="text-h6">
+                        {{ currentEnigmeFavorite.name }}
+                      </div>
+                      <div class="text-subtitle2">
+                        {{ currentEnigmeFavorite.difficulty.difficulty }}
+                      </div>
+                    </q-card-section>
+                  </q-card>
+                </q-tooltip>
+              </q-carousel-slide>
+            </q-carousel>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 text-center">
+          <h2 class="text-h3">Mes propres énigmes</h2>
+          <div class="row justify-center">
+            <div class="col-6">
+              <p class="text-white">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
+                esse, deserunt itaque eaque molestias fuga quidem. Laudantium
+                iure deleniti vero, dolorum corporis, voluptatem magni repellat
+                dolore, recusandae a assumenda sint?
+              </p>
+              <p class="text-white">
+                Necessitatibus, architecto id libero explicabo commodi vitae
+                delectus asperiores quasi repellendus et assumenda provident
+                atque dolor expedita suscipit? A iste qui neque voluptatem
+                laborum maiores harum facere magni beatae modi.
+              </p>
+              <p class="text-white">
+                Porro esse sapiente praesentium mollitia omnis sequi adipisci,
+                id, laudantium fugit rerum a culpa labore nesciunt, tempora
+                inventore nobis laborum repellat explicabo? Incidunt rerum optio
+                reprehenderit, inventore itaque dolorem architecto?
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="block-enigme-fav">
-      <h1 class="text-h3 title-profil">Enigmes favorites</h1>
-      <div class="block-flex-img">
-        <div>
-          <img src="src/assets/images/enigmes/contre_la_montre.jpg" class="image-profil">
-        </div>
-        <div>
-          <img src="src/assets/images/enigmes/ensemencement.jpg" class="image-profil">
-        </div>
-      </div>
-    </div>
-
-    <div class="block-score-diff">
-      <h1 class="text-h3 title-profil">Score par difficulté</h1>
-      <div class="block-flex-circular">
-        <div>
-          <q-circular-progress
-              show-value
-              class="text-light-blue q-ma-md"
-              :value="30"
-              size="200px"
-              color="light-blue"
-          />
-        </div>
-        <div>
-          <q-circular-progress
-              show-value
-              class="text-light-blue q-ma-md"
-              :value="70"
-              size="200px"
-              color="light-blue"
-          />
-        </div>
-      </div>
-    </div>
-
   </q-page>
 </template>
 
@@ -58,57 +137,45 @@
 import { mapGetters } from "vuex";
 
 export default {
+  data: () => ({
+    slide: 0,
+    enigmesFavorites: [],
+    value: {
+      easy: 81,
+      intermediate: 42,
+      hard: 17,
+    },
+  }),
   computed: {
-    ...mapGetters("user", ["user"]),
+    ...mapGetters("userStore", ["user"]),
+    currentEnigmeFavorite() {
+      return this.enigmesFavorites[this.slide];
+    },
+  },
+  async created() {
+    const response = await this.$axios.get(
+      `enigme_favorites?user=${this.user.id}`
+    );
+    this.enigmesFavorites = response.data["hydra:member"].map(
+      (el) => el.enigme
+    );
+  },
+  methods: {
+    playEnigme(id) {
+      this.$router.push({
+        name: "enigme-solution-unique",
+        params: {
+          enigmeId: id,
+        },
+      });
+    },
   },
 };
 </script>
 
 <style scoped>
-
-.block-flex-profil {
-  display: flex;
-  background-color: #5D5166;
-  border-radius: 20px;
+.q-carousel__slide {
+  background-size: contain;
+  background-repeat: no-repeat;
 }
-
-.block-flex-img, .block-flex-circular {
-  display: flex;
-}
-
-.block-flex-img > div, .block-flex-circular > div {
-  flex: 1;
-}
-
-.flex-img {
-  flex: 1;
-}
-
-.image-profil {
-  width: 352px;
-  height: 360px;
-}
-
-.flex-text {
-  flex: 1;
-  text-align: left;
-  margin-top: 50px;
-}
-
-.text-profil {
-  margin-top: 50px;
-}
-
-.text-score{
-  text-align: right;
-}
-
-.text-score > span {
-  text-decoration: underline;
-}
-
-.title-profil {
-  text-align: left;
-}
-
 </style>
