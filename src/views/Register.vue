@@ -68,9 +68,11 @@
 
       <q-btn type="submit" color="primary">S'inscrire</q-btn>
 
-      <div>
-        Déjà un compte ?
-        <router-link :to="{ name: 'login' }">Se connecter</router-link>
+      <div class="column">
+        <span class="text-white">Déjà un compte ? </span>
+        <router-link :to="{ name: 'login' }" class="text-bold text-wheat"
+          >Se connecter</router-link
+        >
       </div>
     </form>
   </q-page>
