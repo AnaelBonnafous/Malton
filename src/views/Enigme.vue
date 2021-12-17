@@ -1,10 +1,10 @@
 <template>
 
-  <FabIndices v-if="indices.length" :indices="indices" />
+  <FabEnigme v-if="indices.length" :enigme="enigme" :indices="indices" />
 
   <IntituleEtEnonceEnigme :enigme="enigme" />
 
-  <template v-if="enigme.solutionUniques.length">
+  <template v-if="enigme?.solutionUniques.length">
     <ReponseSolutionUnique
       :enigmeId="enigmeId"
       @incorrect="answerIsNotCorrect"
@@ -12,7 +12,7 @@
     />
   </template>
 
-  <template v-else-if="enigme.solutionAChoixes.length">
+  <template v-else-if="enigme?.solutionAChoixes.length">
     <ReponseSolutionAChoixes
       :enigmeId="enigmeId"
       :solutions="enigme.solutionAChoixes"
@@ -21,7 +21,7 @@
     />
   </template>
 
-  <template v-else-if="enigme.solutionMultiples.length">
+  <template v-else-if="enigme?.solutionMultiples.length">
     <ReponseSolutionMultiples
       :enigmeId="enigmeId"
       :solutions="enigme.solutionMultiples"
@@ -43,7 +43,7 @@
 <script>
 import IntituleEtEnonceEnigme from "@/components/IntituleEtEnonceEnigme.vue";
 import ReponseSolutionUnique from "@/components/ReponsesEnigmes/ReponseSolutionUnique.vue";
-import FabIndices from "../components/FabIndices.vue";
+import FabEnigme from "../components/FabEnigme.vue";
 import DialogEnigme from "@/components/DialogEnigme.vue";
 import ReponseSolutionAChoixes from "@/components/ReponsesEnigmes/ReponseSolutionAChoixes.vue";
 import ReponseSolutionMultiples from "@/components/ReponsesEnigmes/ReponseSolutionMultiples.vue";
@@ -52,7 +52,7 @@ export default {
   components: {
     IntituleEtEnonceEnigme,
     ReponseSolutionUnique,
-    FabIndices,
+    FabEnigme,
     DialogEnigme,
     ReponseSolutionAChoixes,
     ReponseSolutionMultiples,
