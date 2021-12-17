@@ -1,14 +1,14 @@
 <template>
-  <div class="row justify-center text-center q-mt-lg q-col-gutter-xl">
+  <div class="row justify-center text-center q-my-lg q-col-gutter-xl">
     <div
-      v-for="(solution, index) in solutions"
+      v-for="solution in solutions"
       :key="solution.position"
       class="col-12 col-sm-6 col-md-3 col-xl-2"
     >
       <q-input
-        v-model="propositions[index]"
+        v-model="answer[solution.position]"
         type="text"
-        :label="`Réponse ${index + 1}`"
+        :label="`Réponse ${solution.position}`"
         color="secondary"
         bg-color="white"
         outlined
@@ -16,7 +16,7 @@
     </div>
   </div>
   <div class="text-center q-mt-xl">
-    <q-btn @click="checkAnswer" label="Valider" color="secondary" size="lg" />
+    <q-btn @click="sendAnswer" label="Valider" color="secondary" size="lg" />
   </div>
 </template>
 
@@ -24,21 +24,31 @@
 export default {
   props: ["enigmeId", "solutions"],
   data: () => ({
-    propositions: [],
+    answer: {},
   }),
+  mounted() {
+    this.solutions.forEach((solution) => {
+      this.answer[solution.position] = null;
+    });
+  },
   methods: {
-    checkAnswer() {
-      const is_valid = this.solutions.every((solution, index) => {
-        return solution.value == this.propositions[index];
-      });
-      if (is_valid) {
+    async sendAnswer() {
+      const response = await this.$axios.get(
+        "check_reponses_enigmes/" +
+          this.enigmeId +
+          "/multiple/" +
+          JSON.stringify(this.answer)
+      );
+      const data = response.data["hydra:member"][0];
+
+      if (data["message_response_is_incorrect"]) {
+        this.$emit("incorrect", data["message_response_is_incorrect"]);
+      } else {
         this.$emit(
           "correct",
-          "message_response_is_correct",
-          "image_response_is_correct"
+          data["message_response_is_correct"],
+          data["image_response_is_correct"]
         );
-      } else {
-        this.$emit("incorrect", "message_response_is_incorrect");
       }
     },
   },

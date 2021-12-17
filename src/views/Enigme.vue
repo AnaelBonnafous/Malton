@@ -1,33 +1,34 @@
 <template>
-
   <FabIndices v-if="indices.length" :indices="indices" />
 
   <IntituleEtEnonceEnigme :enigme="enigme" />
 
-  <template v-if="enigme.solutionUniques.length">
-    <ReponseSolutionUnique
-      :enigmeId="enigmeId"
-      @incorrect="answerIsNotCorrect"
-      @correct="answerIsCorrect"
-    />
-  </template>
+  <template v-if="!loading">
+    <template v-if="enigme.solutionUniques.length">
+      <ReponseSolutionUnique
+        :enigmeId="enigmeId"
+        @incorrect="answerIsNotCorrect"
+        @correct="answerIsCorrect"
+      />
+    </template>
 
-  <template v-else-if="enigme.solutionAChoixes.length">
-    <ReponseSolutionAChoixes
-      :enigmeId="enigmeId"
-      :solutions="enigme.solutionAChoixes"
-      @incorrect="answerIsNotCorrect"
-      @correct="answerIsCorrect"
-    />
-  </template>
+    <template v-else-if="enigme.solutionAChoixes.length">
+      <ReponseSolutionAChoixes
+        :enigmeId="enigmeId"
+        :solutions="enigme.solutionAChoixes"
+        @incorrect="answerIsNotCorrect"
+        @correct="answerIsCorrect"
+      />
+    </template>
 
-  <template v-else-if="enigme.solutionMultiples.length">
-    <ReponseSolutionMultiples
-      :enigmeId="enigmeId"
-      :solutions="enigme.solutionMultiples"
-      @incorrect="answerIsNotCorrect"
-      @correct="answerIsCorrect"
-    />
+    <template v-else-if="enigme.solutionMultiples.length">
+      <ReponseSolutionMultiples
+        :enigmeId="enigmeId"
+        :solutions="enigme.solutionMultiples"
+        @incorrect="answerIsNotCorrect"
+        @correct="answerIsCorrect"
+      />
+    </template>
   </template>
 
   <DialogEnigme
@@ -58,6 +59,7 @@ export default {
     ReponseSolutionMultiples,
   },
   data: () => ({
+    loading: true,
     dialog: false,
     enigmeId: null,
     enigme: null,
@@ -74,12 +76,14 @@ export default {
     } else {
       const response = await this.$axios.get("enigmes/" + this.enigmeId);
       this.enigme = response.data;
-      
+
       this.indices = [
         this.enigme.indice1,
         this.enigme.indice2,
         this.enigme.indice3,
       ];
+
+      this.loading = false;
     }
   },
   methods: {
