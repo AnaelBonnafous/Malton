@@ -20,6 +20,8 @@ app.config.globalProperties.$axios = axios;
 
 // VueRouter
 import router from "@/router";
+import middleware from "@grafikri/vue-middleware"
+router.beforeEach(middleware())
 app.use(router);
 
 // Vuex
