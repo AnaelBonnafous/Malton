@@ -86,7 +86,7 @@ export default {
   },
   async created() {
     const response = await this.$axios.get(
-      `enigme_favorites?user=${this.user.id}`
+      `enigme_favorites?user=${this.user['@id']}`
     );
     this.enigmesFavorites = response.data["hydra:member"].map(
       (el) => el.enigme
