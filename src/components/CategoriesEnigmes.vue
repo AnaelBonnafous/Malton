@@ -1,11 +1,6 @@
 <template>
   <div class="bloc-categories">
-    <q-btn
-      @click="resetFilter()"
-      label="Tout"
-      color="secondary"
-      class="q-btn-category"
-    />
+    <q-btn @click="resetFilter()" label="Tout" color="secondary" class="q-btn-category" />
     <q-btn
       v-for="category in categories"
       :key="category.id"
@@ -18,16 +13,24 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex"
+
 export default {
   name: "CategoriesEnigmes",
-  data: () => ({
-    categories: [],
-  }),
-  async created() {
-    const response = await this.$axios.get("categories");
-    this.categories = response.data['hydra:member'];;
+  created() {
+    if (!this.categories.length) {
+      this.$axios.get("categories").then(response => {
+        this.saveCategories(response.data['hydra:member'])
+      })
+    }
   },
   methods: {
+    ...mapActions({
+      storeSaveCategories: "categoryStore/saveCategories",
+    }),
+    saveCategories(categories) {
+      this.storeSaveCategories(categories)
+    },
     emitFilter(category) {
       this.$emit("filter", category["@id"]);
     },
@@ -35,6 +38,9 @@ export default {
       this.$emit("filter", " ");
     },
   },
+  computed: {
+    ...mapGetters('categoryStore', ['categories'])
+  }
 };
 </script>
 

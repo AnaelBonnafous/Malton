@@ -2,11 +2,13 @@ import { createStore } from "vuex";
 import createPersistedState from "vuex-persistedstate";
 import userStore from "@/store/modules/user";
 import enigmeStore from "@/store/modules/enigme";
+import categoryStore from "@/store/modules/category";
 
 export default createStore({
   modules: {
     userStore,
     enigmeStore,
+    categoryStore,
   },
   plugins: [
     createPersistedState({
