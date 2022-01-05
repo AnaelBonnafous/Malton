@@ -41,10 +41,9 @@
                 class="cursor-pointer"
                 @click="playEnigme(enigme.id)"
               >
-                <q-tooltip
+                <!-- <q-tooltip
                   class="bg-secondary rounded-borders"
-                  anchor="center end"
-                  self="center start"
+                  anchor="center middle" self="center start"
                   :delay="500"
                 >
                   <q-card class="text-center text-black">
@@ -60,7 +59,7 @@
                       </div>
                     </q-card-section>
                   </q-card>
-                </q-tooltip>
+                </q-tooltip> -->
               </q-carousel-slide>
             </q-carousel>
           </div>
