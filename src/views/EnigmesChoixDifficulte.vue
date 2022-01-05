@@ -16,13 +16,20 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 export default {
-  data: () => ({
-    difficulties: [],
-  }),
+  computed: {
+    ...mapGetters("difficultyStore", ["difficulties"]),
+  },
+  methods: {
+    ...mapActions({
+      storeSaveDifficulties: "difficultyStore/getDifficulties",
+    }),
+  },
   async created() {
-    const response = await this.$axios.get('difficultes');
-    this.difficulties = response.data['hydra:member'];
+    if (this.difficulties.length === 0) {
+      this.storeSaveDifficulties();
+    }
   },
 };
 </script>
