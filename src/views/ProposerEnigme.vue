@@ -66,7 +66,19 @@ export default {
   methods: {
     async envoyerProposition() {
       this.form.user = this.user['@id'];
-      await this.$axios.post("demandes", this.form);
+      try {
+        const test = await this.$axios.post("demandes", this.form);
+        this.$router.push({ name: "accueil" });
+        this.$q.notify({
+          message: `Nous avons réceptionné votre énigme, merci ! :)`,
+          color: "green",
+        });
+      } catch {
+        this.$q.notify({
+          message: `Erreur ! Veuillez réessayer plus tard !`,
+          color: "red",
+        });
+      }
     },
   },
 };
