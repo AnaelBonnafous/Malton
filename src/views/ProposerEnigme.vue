@@ -12,6 +12,7 @@
         placeholder="Le crime du quai"
         outlined
         bg-color="white"
+        required
       />
       <q-input
         v-model="form.statement"
@@ -20,6 +21,7 @@
         placeholder="Qui est le coupable ?"
         outlined
         bg-color="white"
+        required
       />
       <q-input
         v-model="form.solution"
@@ -28,6 +30,7 @@
         placeholder="Monsieur Dupont"
         outlined
         bg-color="white"
+        required
       />
       <q-input
         v-model="form.comment"
