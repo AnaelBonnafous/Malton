@@ -2,11 +2,13 @@ import { createStore } from "vuex";
 import createPersistedState from "vuex-persistedstate";
 import userStore from "@/store/modules/user";
 import enigmeStore from "@/store/modules/enigme";
+import difficultyStore from "@/store/modules/difficulty";
 
 export default createStore({
   modules: {
     userStore,
     enigmeStore,
+    difficultyStore,
   },
   plugins: [
     createPersistedState({
